@@ -27,11 +27,14 @@ public class SagiVectorIcon extends ImageView {
 
     private static final String NO_NAME = "NO_NAME";
     private static final String NO_PRICE = "0.00";
+    private static final String NO_DESCRIPTION = "NO_DESCRIPTION";
     private static final int NO_WIDTH = -1;
     private static final int NO_HEIGHT = -1;
 
+    public int id;
     public String mName = NO_NAME;
     public String mPrice = NO_PRICE;
+    public String mDescription = NO_DESCRIPTION;
 
     protected int mWidth = NO_WIDTH;
     protected int mHeight = NO_HEIGHT;
@@ -47,6 +50,7 @@ public class SagiVectorIcon extends ImageView {
 //    private SagiVectorIcon vectorIcon;
 
     public SagiVectorIcon buildIcon() throws Exception {
+        id = generateViewId();
         initNew();
 
         if (this.mName == NO_NAME) {
@@ -86,6 +90,11 @@ public class SagiVectorIcon extends ImageView {
 
     public SagiVectorIcon setName(String name) {
         this.mName = name;
+        return this;
+    }
+
+    public SagiVectorIcon setDescription(String description) {
+        this.mDescription = description;
         return this;
     }
 
