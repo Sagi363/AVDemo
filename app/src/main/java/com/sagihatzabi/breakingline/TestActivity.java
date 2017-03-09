@@ -11,8 +11,10 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.sagihatzabi.breakingline.items.Burger;
+import com.sagihatzabi.breakingline.items.SagiVectorIcon;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +34,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         View burgerView = Burger.create(this)
                 .setType(Burger.Type.BeefBurger)
                 .setName("Test Burger")
+                .setDescription("A sandwich consisting of a bun, a cooked beef patty, and often other ingredients such as cheese, onion slices, lettuce, or condiments.")
                 .setPriceInDollars(9.99f)
                 .build();
 
@@ -48,14 +51,12 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         LayoutInflater inflater = (LayoutInflater) TestActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
 
         // Inflate the custom view
-        View popup_window_layout = inflater.inflate(R.layout.test_layout_to_inflate, null);
+        View popup_window_layout = inflater.inflate(R.layout.food_details, null);
 
         // Burger
         View localBurgerView =  Burger.create(this)
                 .setType(Burger.Type.BeefBurger)
-                .setName("Test Burger")
                 .setSize(480, 480)
-                .setPriceInDollars(9.99f)
                 .build();
 
         ViewGroup.LayoutParams localburgerLayoutParams = localBurgerView.getLayoutParams();
@@ -65,11 +66,23 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         burgerRelativeLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 
         final float scale = getResources().getDisplayMetrics().density;
-        int margin = (int) (24 * scale + 0.5f);
-        burgerRelativeLayoutParams.topMargin = margin;
+        int margin_24 = (int) (24 * scale + 0.5f);
+        burgerRelativeLayoutParams.topMargin = margin_24;
 
         // Add burger to customView
-        ((RelativeLayout) popup_window_layout.findViewById(R.id.outer_layout)).addView(localBurgerView, burgerRelativeLayoutParams);
+        ((RelativeLayout) popup_window_layout.findViewById(R.id.food_details_outer_layout)).addView(localBurgerView, burgerRelativeLayoutParams);
+
+        TextView tvPrice = (TextView) popup_window_layout.findViewById(R.id.food_details_price);
+        TextView tvName = (TextView) popup_window_layout.findViewById(R.id.food_details_name);
+        TextView tvDescription = (TextView) popup_window_layout.findViewById(R.id.food_details_description);
+
+        tvPrice.setText(((SagiVectorIcon) v).mPrice + getString(R.string.dollar_sign));
+        tvName.setText(((SagiVectorIcon) v).mName);
+        tvDescription.setText(((SagiVectorIcon) v).mDescription);
+
+
+
+
 
                 /*
                     public PopupWindow (View contentView, int width, int height)

@@ -113,8 +113,8 @@ public class Burger extends SagiVectorIcon {
     }
 
     @Override
-    public SagiVectorIcon setDescription(String description) {
-        return super.setDescription(description);
+    public Burger setDescription(String description) {
+        return (Burger) super.setDescription(description);
     }
 
     @Override
