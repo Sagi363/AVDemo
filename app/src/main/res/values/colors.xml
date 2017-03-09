@@ -5,6 +5,8 @@
     <color name="colorGradientLight">#00ADF2</color>
     <color name="colorGradientDark">#0086BF</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorRed">#E52727</color>
+    <color name="colorGreen">#52C139</color>
 
     <color name="color_meatDarkColor">#662a2a</color>
     <color name="color_sesameColor">#ffeccc</color>
