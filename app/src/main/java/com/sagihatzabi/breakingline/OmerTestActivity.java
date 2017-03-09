@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.sagihatzabi.breakingline.adapters.ItemsViewAdapter;
 import com.sagihatzabi.breakingline.items.Burger;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class OmerTestActivity extends AppCompatActivity {
 
-    FoodRecyclerView recyclerView;
+    LinearLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +25,12 @@ public class OmerTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_omer_test);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        recyclerView = (FoodRecyclerView) findViewById(R.id.food_recycler);
+        container = (LinearLayout) findViewById(R.id.omer_container);
         ItemsViewAdapter adapter = new ItemsViewAdapter(getDummyList());
-        recyclerView.build().addAdapter(adapter);
+        container.addView(FoodRecyclerView.create(this)
+                                          .addAdapter(adapter)
+                                          .setMaxView(3)
+                                          .build());
     }
 
     public List<SagiVectorIcon> getDummyList() {
