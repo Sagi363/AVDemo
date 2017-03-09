@@ -42,7 +42,12 @@ public class BurgersRecyclerView extends SnappingRecyclerView {
 		return this;
 	}
 
+	public BurgersRecyclerView
+	
+
 	public static BurgersRecyclerView create(@NonNull final Context context) {
 		return new BurgersRecyclerView(context);
 	}
+
+
 }
