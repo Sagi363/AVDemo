@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">SuperAVD</string>
+    <string name="app_name">Breaking Line</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="dollar_sign">$</string>
 </resources>
