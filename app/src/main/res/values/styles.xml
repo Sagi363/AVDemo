@@ -78,4 +78,7 @@
         <item name="cheeseLightColor">@color/color_cheeseLightColor</item>
     </style>
 
+    <style name="NoStyle">
+    </style>
+
 </resources>

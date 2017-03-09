@@ -14,12 +14,18 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
+import com.sagihatzabi.breakingline.items.SagiVectorIcon;
+
+import java.util.List;
+
 import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_FLING;
 import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL;
 
-public class BurgersRecyclerView extends SnappingRecyclerView {
+public class BurgersRecyclerView extends RecyclerView {
 
-	private boolean mStartAnimationOnCreated = true;
+	private int mMaxNumberOfItems = 5;
+	private int mNumberOfItems;
+	private Adapter mAdapter;
 
 	public BurgersRecyclerView(Context context) {
 		this(context, null);
@@ -35,12 +41,31 @@ public class BurgersRecyclerView extends SnappingRecyclerView {
 
 	public BurgersRecyclerView build() {
 
-		if (this.mStartAnimationOnCreated) {
-//			this.startAnimation();
+		if (mAdapter == null) {
+			// TODO: ERROR
+		}
+		else {
+			this.setAdapter(mAdapter);
 		}
 
 		return this;
 	}
+
+	public BurgersRecyclerView setNumberOfItems(int numberOfItems) {
+		this.mNumberOfItems = mNumberOfItems;
+		return this;
+	}
+
+	public BurgersRecyclerView setOrientation(int orientation) {
+		this.setLayoutManager(new LinearLayoutManager(getContext(), orientation, false));
+		return this;
+	}
+
+	public BurgersRecyclerView addAdapter(Adapter adapter) {
+		this.mAdapter = adapter;
+		return this;
+	}
+
 
 	public static BurgersRecyclerView create(@NonNull final Context context) {
 		return new BurgersRecyclerView(context);

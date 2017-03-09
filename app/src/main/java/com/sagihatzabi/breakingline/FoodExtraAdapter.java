@@ -1,6 +1,7 @@
 package com.sagihatzabi.breakingline;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,12 +28,14 @@ public class FoodExtraAdapter extends RecyclerView.Adapter<FoodExtraAdapter.View
         public LinearLayout mLinearLayout;
         public TextView mName;
         public TextView mPrice;
+        public ImageButton mButton;
 
         public ViewHolder(View v) {
             super(v);
             mLinearLayout = (LinearLayout) itemView.findViewById(R.id.food_extra_linearlayout);
-//            mName = (TextView) itemView.findViewById(R.id.item_view_name);
-//            mPrice = (TextView) itemView.findViewById(R.id.item_view_price);
+            mName = (TextView) itemView.findViewById(R.id.food_extra_name);
+            mPrice = (TextView) itemView.findViewById(R.id.food_extra_price);
+            mButton = (ImageButton) itemView.findViewById(R.id.food_extra_button);
         }
     }
 
@@ -60,43 +63,80 @@ public class FoodExtraAdapter extends RecyclerView.Adapter<FoodExtraAdapter.View
         // - replace the contents of the view with that element
         SagiVectorIcon icon = this.mIcons.get(position);
 
-        // Set size to width and height to WRAP_CONTENT
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                                              LinearLayout.LayoutParams.WRAP_CONTENT);
+//        // Set size to width and height to WRAP_CONTENT
+//        LinearLayout.LayoutParams nameParams =
+//                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+//                                              LinearLayout.LayoutParams.WRAP_CONTENT);
+//
+//        nameParams.gravity = Gravity.CENTER_HORIZONTAL;
+//
+//        DisplayMetrics displayMetrics = icon.getContext().getResources().getDisplayMetrics();
+//        int margins_minus_50dp =  Math.round(50 / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+//
+////        final float scale = icon.getResources().getDisplayMetrics().density;
+////        int margins_minus_50dp = (int) (50 * scale + 0.5f);
+//
+//        nameParams.setMargins(0, -margins_minus_50dp, 0, 0);
+//
+//        TextView name = new TextView(icon.getContext());
+//        name.setTextSize(13);
+//        name.setText(icon.mName);
+//        name.setLayoutParams(nameParams);
+//
+//        // Set size to width and height to WRAP_CONTENT
+//        LinearLayout.LayoutParams priceParams =
+//                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+//                        LinearLayout.LayoutParams.WRAP_CONTENT);
+//
+//        priceParams.gravity = Gravity.CENTER_HORIZONTAL;
+//
+//        TextView price = new TextView(icon.getContext());
+//        price.setTextSize(12);
+//        price.setText(Float.parseFloat(icon.mPrice) > 0 ?
+//                icon.mPrice + icon.getResources().getString(R.string.dollar_sign) : "--");
+//        price.setLayoutParams(priceParams);
+//
+//        TextView button = new TextView(icon.getContext());
+//        button.setTextColor(icon.getResources().getColor(android.R.color.white));
+//        button.setBackground(icon.getResources().getDrawable(R.drawable.minus_button));
+//        button.setText("-");
+//        button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//        button.setTextSize(20);
+//        button.setPadding(0, 0, 0, 0);
+//        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(100, 100);
+//        buttonParams.gravity = Gravity.CENTER_HORIZONTAL;
+//        buttonParams.topMargin = 12;
+//        button.setLayoutParams(buttonParams);
+//
+//        TypedValue outValue = new TypedValue();
+//        holder.mLinearLayout.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
+//        holder.mLinearLayout.setBackgroundResource(outValue.resourceId);
 
-        params.gravity = Gravity.CENTER_HORIZONTAL;
-
-        TextView name = new TextView(icon.getContext());
-        name.setTextSize(14);
-        name.setText(icon.mName);
-        name.setLayoutParams(params);
-
-        TextView price = new TextView(icon.getContext());
-        price.setTextSize(13);
-        price.setText(Float.parseFloat(icon.mPrice) > 0 ?
+        holder.mName.setText(icon.mName);
+        holder.mPrice.setText(Float.parseFloat(icon.mPrice) > 0 ?
                 icon.mPrice + icon.getResources().getString(R.string.dollar_sign) : "--");
-        price.setLayoutParams(params);
 
-        Button button = new Button(icon.getContext());
-        button.setTextColor(icon.getResources().getColor(android.R.color.white));
-        button.setBackground(icon.getResources().getDrawable(R.drawable.minus_button));
-        button.setText("-");
-        button.setLayoutParams(params);
+        if (true) {
+            holder.mButton.setBackground(icon.getResources().getDrawable(R.drawable.minus_button));
+            holder.mButton.setImageResource(R.drawable.ic_remove);
+        }
+        else {
+            holder.mButton.setBackground(icon.getResources().getDrawable(R.drawable.plus_button));
+            holder.mButton.setImageResource(R.drawable.ic_add);
+        }
 
-        TypedValue outValue = new TypedValue();
-        icon.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
-        icon.setBackgroundResource(outValue.resourceId);
 
         if(icon.getParent() != null)
             ((ViewGroup)icon.getParent()).removeView(icon); // <- fix
 
         if (icon.getParent() == null) holder.mLinearLayout.addView(icon, 0);
-        if (name.getParent() == null) holder.mLinearLayout.addView(name, 1);
-        if (price.getParent() == null) holder.mLinearLayout.addView(price, 2);
-        if (button.getParent() == null) holder.mLinearLayout.addView(button, 3);
+//        if (name.getParent() == null) holder.mLinearLayout.addView(name, 1);
+//        if (price.getParent() == null) holder.mLinearLayout.addView(price, 2);
+//        if (button.getParent() == null) holder.mLinearLayout.addView(button, 3);
 //        holder.mName.setText(icon.mName);
 //        holder.mPrice.setText(icon.mPrice + "$");
+
+        holder.mButton.setOnClickListener(this);
         holder.mLinearLayout.setOnClickListener(this);
     }
 
@@ -108,6 +148,11 @@ public class FoodExtraAdapter extends RecyclerView.Adapter<FoodExtraAdapter.View
 
     @Override
     public void onClick(View view) {
+        if (view instanceof ImageButton) {
+//            view.getParent().;
+            return;
+        }
+
         SagiVectorIcon icon = ((SagiVectorIcon)((LinearLayout)view).getChildAt(0));
 
         if (icon instanceof Burger && ((Burger)icon).mType == Burger.Type.ChikenBurger) {

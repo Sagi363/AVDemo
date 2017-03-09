@@ -14,7 +14,11 @@ import android.util.Log;
 
 import com.sagihatzabi.breakingline.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
+
+import static com.sagihatzabi.breakingline.items.FoodExtra.Type.*;
 
 /**
  * Created by sagihatzabi on 05/02/2017.
@@ -33,9 +37,18 @@ public class Burger extends SagiVectorIcon {
     public boolean bSesame = true;
 
 //    final Handler animHandler = new Handler();
-    private Queue<Integer> animationDrawableQueue;
+//    private Queue<Integer> animationDrawableQueue;
+    private List<FoodExtra.Type> mExtras;
 
     public SagiVectorIcon build() {
+        this.mExtras = new ArrayList<>();
+        mExtras.add(Veggs);
+        mExtras.add(Cheese);
+        mExtras.add(Bacon);
+        mExtras.add(Pickle);
+        mExtras.add(Egg);
+        mExtras.add(Chili);
+
         try {
             this.setDrawableId(DRAWABLE_WITH_ANIMATION)
                 .setBaseDrawableWitoutAnimationId(BASE_DRAWABLE_WITHOUT_ANIMATION)
@@ -113,8 +126,8 @@ public class Burger extends SagiVectorIcon {
     }
 
     @Override
-    public SagiVectorIcon setDescription(String description) {
-        return super.setDescription(description);
+    public Burger setDescription(String description) {
+        return (Burger) super.setDescription(description);
     }
 
     @Override
