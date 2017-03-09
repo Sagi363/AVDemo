@@ -1,4 +1,4 @@
-package com.sagihatzabi.superavd;
+package com.sagihatzabi.breakingline.adapters;
 
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
@@ -10,14 +10,19 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.sagihatzabi.breakingline.R;
+import com.sagihatzabi.breakingline.items.Burger;
+import com.sagihatzabi.breakingline.items.SagiVectorIcon;
+
 import java.util.List;
 
 import static java.security.AccessController.getContext;
 
-/**
+*
  * Created by sagihatzabi on 11/02/2017.
- */
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements OnClickListener {
+
+
+public class ItemsViewAdapter extends RecyclerView.Adapter<ItemsViewAdapter.ViewHolder> implements OnClickListener {
     private List<SagiVectorIcon> mIcons;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -33,21 +38,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         }
     }
 
+    public List<SagiVectorIcon> getItems() {
+        return this.mIcons;
+    }
+
+    public void addItem(SagiVectorIcon item) {
+        this.mIcons.add(item);
+    }
+
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<SagiVectorIcon> mIcons) {
+    public ItemsViewAdapter(List<SagiVectorIcon> mIcons) {
         this.mIcons = mIcons;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemsViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_view, parent, false);
+               .inflate(R.layout.item_view, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(itemView);
 
         return viewHolder;
+        return null;
     }
 
     // Replace the contents of a view (invoked by the layout manager)

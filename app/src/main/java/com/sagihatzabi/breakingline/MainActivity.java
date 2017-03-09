@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                            .build());
 
         // Add custom burgerslist
-        menu.addView(BurgersRecyclerView.create(this).build());
+        menu.addView(FoodRecyclerView.create(this).build());
 
         // Add the menu to activity
         ((ConstraintLayout) findViewById(R.id.activity_main)).addView(menu);

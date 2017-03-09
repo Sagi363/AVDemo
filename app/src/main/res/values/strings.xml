@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SuperAVD</string>
+    <string name="title_activity_omer_test">OmerTestActivity</string>
 </resources>
