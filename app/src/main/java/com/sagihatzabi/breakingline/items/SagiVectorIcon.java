@@ -59,6 +59,9 @@ public class SagiVectorIcon extends ImageView {
         if (this.mPrice == NO_PRICE) {
             throw new Exception("You must use setPriceInDollars(\"9.99\")");
         }
+        if (this.mDescription == NO_DESCRIPTION) {
+            throw new Exception("You must use setDescription(\"Bla Bla Bla...\")");
+        }
         return this;
     }
 

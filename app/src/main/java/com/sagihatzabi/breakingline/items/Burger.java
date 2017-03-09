@@ -113,6 +113,11 @@ public class Burger extends SagiVectorIcon {
     }
 
     @Override
+    public SagiVectorIcon setDescription(String description) {
+        return super.setDescription(description);
+    }
+
+    @Override
     public Burger setPriceInDollars(float price) {
         return ((Burger) super.setPriceInDollars(price));
     }
