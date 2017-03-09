@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <declare-styleable name="BurgerView">
+            <attr name="meatDarkColor" format="color" />
+            <attr name="sesameColor" format="color" />
+            <attr name="cheeseDarkColor" format="color" />
+            <attr name="meatLightColor" format="color" />
+            <attr name="bunColor" format="color" />
+            <attr name="meatStrokeColor" format="color" />
+            <attr name="meatGrillColor" format="color" />
+            <attr name="tomatoLightColor" format="color" />
+            <attr name="bunShadowColor" format="color" />
+            <attr name="lettuceDarkColor" format="color" />
+            <attr name="bunInsideColor" format="color" />
+            <attr name="lettuceLightColor" format="color" />
+            <attr name="tomatoDarkColor" format="color" />
+            <attr name="cheeseLightColor" format="color" />
+        </declare-styleable>
+</resources>

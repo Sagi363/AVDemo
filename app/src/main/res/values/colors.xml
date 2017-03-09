@@ -2,5 +2,26 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorGradientLight">#00ADF2</color>
+    <color name="colorGradientDark">#0086BF</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="color_meatDarkColor">#662a2a</color>
+    <color name="color_sesameColor">#ffeccc</color>
+    <color name="color_cheeseDarkColor">#f2b01a</color>
+    <color name="color_meatLightColor">#733532</color>
+    <color name="color_bunColor">#ffa742</color>
+    <color name="color_meatStrokeColor">#000000</color>
+    <color name="color_meatGrillColor">#4f1c1d</color>
+    <color name="color_tomatoLightColor">#ff4640</color>
+    <color name="color_bunShadowColor">#000000</color>
+    <color name="color_lettuceDarkColor">#72bc42</color>
+    <color name="color_bunInsideColor">#ffbb64</color>
+    <color name="color_lettuceLightColor">#81d54b</color>
+    <color name="color_tomatoDarkColor">#e33a30</color>
+    <color name="color_cheeseLightColor">#ffb610</color>
+    <color name="color_notActiveStroke">#00000000</color>
+    <color name="textColor">#262729</color>
+    <color name="item_view_textColor">#f7f7f7</color>
+    <color name="textDescColor">#4a4a4b</color>
 </resources>

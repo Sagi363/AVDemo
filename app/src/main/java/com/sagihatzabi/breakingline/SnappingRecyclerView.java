@@ -27,7 +27,7 @@ public class SnappingRecyclerView extends RecyclerView {
 	private Handler mHandler = new Handler();
 
 	private boolean _scaleViews = false;
-	private boolean _alphaViews = true;
+	private boolean _alphaViews = false;
 	private Orientation _orientation = Orientation.HORIZONTAL;
 
 	private ChildViewMetrics _childViewMetrics;
@@ -156,6 +156,10 @@ public class SnappingRecyclerView extends RecyclerView {
 	 */
 	public void enableViewScaling(boolean enabled) {
 		this._scaleViews = enabled;
+	}
+
+	public void enableAlphaViews(boolean enabled) {
+		this._alphaViews = enabled;
 	}
 
 	private void updateViews() {
