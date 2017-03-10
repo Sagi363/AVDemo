@@ -25,7 +25,6 @@
             android:id="@+id/fragment_cart_pay_layout"
             android:layout_width="92dp"
             android:layout_height="match_parent"
-
             android:orientation="vertical"
             android:background="?attr/selectableItemBackgroundBorderless">
 

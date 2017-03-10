@@ -159,12 +159,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
     }
 
     private void computeCartPrice() {
-        float price = 0;
-
-        for (SagiVectorIcon sagiVectorIcon : this.mCart) {
-            // TODO: Compute price here
-            price += Float.valueOf(sagiVectorIcon.mPrice);
-        }
+        float price = Globals.round(Globals.computeCartPrice(mCart), 2);
 
         mPriceTextView.setText(price + getString(R.string.dollar_sign));
     }

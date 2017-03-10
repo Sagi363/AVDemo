@@ -10,6 +10,8 @@ import com.sagihatzabi.breakingline.items.SagiVectorIcon;
 import com.sagihatzabi.breakingline.items.SodaCan;
 import com.sagihatzabi.breakingline.items.Steak;
 
+import java.util.ArrayList;
+
 /**
  * Created by Yoav on 10-Mar-17.
  */
@@ -23,36 +25,31 @@ public class Globals {
                     .setType(((Burger) originalIcon).mType)
                     .setSize(regSize, regSize)
                     .build();
-        }
-        else if (originalIcon instanceof Fries) {
+        } else if (originalIcon instanceof Fries) {
             localFoodView = Fries.create(context)
                     .setType(((Fries) originalIcon).mType)
                     .setSize(regSize, regSize)
                     .build();
-        }
-        else if (originalIcon instanceof Steak) {
+        } else if (originalIcon instanceof Steak) {
             localFoodView = Steak.create(context)
                     .setType(((Steak) originalIcon).mType)
                     .setSize(regSize, regSize)
                     .build();
-        }
-        else if (originalIcon instanceof SodaCan) {
+        } else if (originalIcon instanceof SodaCan) {
             ((SodaCan) originalIcon).mType.isScale = isScaledCans;
 
             localFoodView = SodaCan.create(context)
                     .setType(((SodaCan) originalIcon).mType)
                     .setSize(canSize, canSize)
                     .build();
-        }
-        else if (originalIcon instanceof ColaCan) {
+        } else if (originalIcon instanceof ColaCan) {
             ((ColaCan) originalIcon).mType.isScale = isScaledCans;
 
             localFoodView = ColaCan.create(context)
                     .setType(((ColaCan) originalIcon).mType)
                     .setSize(canSize, canSize)
                     .build();
-        }
-        else if (originalIcon instanceof ColaCan2) {
+        } else if (originalIcon instanceof ColaCan2) {
             ((ColaCan2) originalIcon).mType.isScale = isScaledCans;
 
             localFoodView = ColaCan2.create(context)
@@ -63,4 +60,26 @@ public class Globals {
 
         return localFoodView;
     }
+
+    public static float computeCartPrice(ArrayList<SagiVectorIcon> items) {
+        float price = 0;
+
+        for (SagiVectorIcon sagiVectorIcon : items) {
+            price += Float.valueOf(sagiVectorIcon.mPrice);
+        }
+
+        return price;
+    }
+
+    public static float round(float value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (float) tmp / factor;
+    }
 }
+
+
+
