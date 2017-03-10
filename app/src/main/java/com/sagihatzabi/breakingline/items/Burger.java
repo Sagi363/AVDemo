@@ -115,6 +115,8 @@ public class Burger extends SagiVectorIcon {
     public Burger setType(Type type) {
         this.mType = type;
         this.setStyle(this.mType.getStyle());
+        this.setName(type.getName());
+        this.setPriceInDollars(type.getPriceInDollars());
         return this;
     }
 

@@ -10,22 +10,22 @@
 
     <LinearLayout
             android:id="@+id/fragment_cart_items"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
-    </LinearLayout>
+            android:orientation="horizontal"/>
 
     <View
         android:layout_width="1dp"
-        android:layout_margin="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
         android:background="@color/divider_color"
         android:layout_height="match_parent"/>
 
     <LinearLayout
             android:id="@+id/fragment_cart_pay_layout"
-            android:layout_width="92dp"
+            android:layout_width="82dp"
             android:layout_height="match_parent"
-
             android:orientation="vertical"
             android:background="?attr/selectableItemBackgroundBorderless">
 
@@ -34,22 +34,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/add_to_cart_button"
-                android:paddingTop="5dp"
+                android:paddingTop="7dp"
                 android:paddingBottom="5dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="10.99$"
                 android:textSize="18sp"
+            android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="12dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="12dp"
-                android:gravity="center_horizontal"/>
+                android:layout_marginBottom="12dp"/>
 
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
                 android:textSize="15sp"
                 android:textColor="@android:color/black"
                 android:text="@string/tap_to_pay"

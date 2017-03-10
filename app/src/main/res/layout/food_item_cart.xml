@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/food_item_linearlayout"
-    android:layout_width="match_parent"
+    android:id="@+id/food_item_cart_linearlayout"
+    android:layout_width="100dp"
     android:layout_height="match_parent"
     android:gravity="bottom"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/food_item_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="13sp"
-        android:layout_marginTop="6dp"
-        android:textColor="@android:color/black"
-        android:text="name" />
-
-    <TextView
-        android:id="@+id/food_item_price"
+        android:id="@+id/food_item_cart_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="12sp"
+        android:layout_marginTop="1dp"
+        android:textColor="@android:color/black"
+        android:text="name" />
+
+    <TextView
+        android:id="@+id/food_item_cart_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="11sp"
         android:layout_marginBottom="3dp"
         android:textColor="@android:color/black"
         android:text="price" />

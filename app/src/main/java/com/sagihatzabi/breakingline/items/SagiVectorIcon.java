@@ -14,6 +14,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.view.ContextThemeWrapper;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.ScaleAnimation;
@@ -94,6 +95,20 @@ public class SagiVectorIcon extends ImageView {
     public SagiVectorIcon setSize(int width, int height) {
         this.mWidth = width;
         this.mHeight = height;
+        return this;
+    }
+
+    public SagiVectorIcon setGravity(int gravity) {
+
+        // Set size to width and height, default WRAP_CONTENT
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(mWidth != -1 ? mWidth : LinearLayout.LayoutParams.WRAP_CONTENT,
+                        mHeight != -1 ? mHeight : LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        params.gravity = gravity;
+
+        this.setLayoutParams(params);
+
         return this;
     }
 
