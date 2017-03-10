@@ -235,7 +235,7 @@ public class SagiVectorIcon extends ImageView {
         this.mDrawable = ResourcesCompat.getDrawable(getResources(), mDrawableId, theme);
 
         if (!(this.mDrawable instanceof Animatable)) {
-            this.mStartAnimationOnCreated = false;
+//            this.mStartAnimationOnCreated = false;
             // TODO: REFRESH
             this.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
                     mBaseDrawableWitoutAnimId != 0 ? mBaseDrawableWitoutAnimId : mDrawableId, theme));
@@ -303,6 +303,7 @@ public class SagiVectorIcon extends ImageView {
             ((Animatable)mDrawable).start();
         }
         else {
+            this.scaleViewAnimation(0.4f, 1.0f);
             Log.d("SAGI", "startAnimation bug");
         }
     }

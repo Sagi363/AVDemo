@@ -20,10 +20,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sagihatzabi.breakingline.items.Burger;
+import com.sagihatzabi.breakingline.items.ColaCan;
+import com.sagihatzabi.breakingline.items.ColaCan2;
 import com.sagihatzabi.breakingline.items.FoodExtra;
 import com.sagihatzabi.breakingline.items.FoodExtraState;
 import com.sagihatzabi.breakingline.items.Fries;
 import com.sagihatzabi.breakingline.items.SagiVectorIcon;
+import com.sagihatzabi.breakingline.items.SodaCan;
+import com.sagihatzabi.breakingline.items.Steak;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,14 +53,15 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         final LinearLayout menu = new LinearLayout(this);
         menu.setOrientation(LinearLayout.VERTICAL);
 
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 4; i++) {
             final Handler handler = new Handler();
+            final int finalI = i;
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    menu.addView(createSnappingRecyclerView());
+                    menu.addView(addLine(finalI));
                 }
-            }, i * 500);
+            }, i * 600);
         }
 
         NestedScrollView nestedScrollView = new NestedScrollView(this);
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         mLinearLayout.addView(nestedScrollView);
     }
 
-    BurgersRecyclerView createSnappingRecyclerView() {
+    BurgersRecyclerView addLine(int lineNumber) {
         List<SagiVectorIcon> customViews = new ArrayList<>();
 
         Display display = getWindowManager().getDefaultDisplay();
@@ -74,41 +79,95 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         screenHeight = size.y;
         int iconSize = screenWidth / NUM_OF_ITEMS;
 
-//        customViews.add(new Burger(this, Burger.Type.BeefBurger, iconSize, iconSize));
-        customViews.add(Burger.create(this)
-                .setType(Burger.Type.BeefBurger)
-                .setSize(iconSize, iconSize)
-                .setName("Sagi Test1")
-                .setPriceInDollars(9.99f)
-                .setDescription("Description")
-                .removeCheese()
-                .build());
+        switch (lineNumber) {
+            case 1: {
+                customViews.add(Steak.create(this)
+                        .setType(Steak.Type.Steak)
+                        .setSize(iconSize, iconSize)
+                        .setName("Sinta Steak")
+                        .setDescription(getString(R.string.burger_description))
+                        .build());
 
-        customViews.add(Burger.create(this)
-                .setType(Burger.Type.ChikenBurger)
-                .setSize(iconSize, iconSize)
-                .setName("Sagi Test2")
-                .setPriceInDollars(8.99f)
-                .setDescription("Description")
-                .build());
+                customViews.add(Burger.create(this)
+                        .setType(Burger.Type.BeefBurger)
+                        .setSize(iconSize, iconSize)
+                        .setName("Burger")
+                        .setPriceInDollars(9.99f)
+                        .setDescription(getString(R.string.burger_description))
+                        .build());
 
-        customViews.add(Fries.create(this)
-                .setType(Fries.Type.RegularFries)
-                .setSize(iconSize, iconSize)
-                .setDescription("Description")
-                .build());
+                customViews.add(Burger.create(this)
+                        .setType(Burger.Type.ChikenBurger)
+                        .setSize(iconSize, iconSize)
+                        .setName("Chiken Burger")
+                        .setPriceInDollars(8.99f)
+                        .setDescription(getString(R.string.burger_description))
+                        .build());
 
-        customViews.add(Fries.create(this)
-                .setType(Fries.Type.SweetPotatoFries)
-                .setSize(iconSize, iconSize)
-                .setDescription("Description")
-                .build());
+                customViews.add(Steak.create(this)
+                        .setType(Steak.Type.Steak)
+                        .setSize(iconSize, iconSize)
+                        .setName("Entrecote Steak")
+                        .setDescription(getString(R.string.burger_description))
+                        .build());
+                break;
+            }
+            case 2: {
+                customViews.add(Fries.create(this)
+                        .setType(Fries.Type.RegularFries)
+                        .setSize(iconSize, iconSize)
+                        .setName("Fries")
+                        .setDescription("Description")
+                        .build());
 
-        customViews.add(Fries.create(this)
-                .setType(Fries.Type.HotFries)
-                .setSize(iconSize, iconSize)
-                .setDescription("Description")
-                .build());
+                customViews.add(Fries.create(this)
+                        .setType(Fries.Type.SweetPotatoFries)
+                        .setSize(iconSize, iconSize)
+                        .setDescription("Description")
+                        .build());
+
+                customViews.add(Fries.create(this)
+                        .setType(Fries.Type.HotFries)
+                        .setSize(iconSize, iconSize)
+                        .setDescription("Description")
+                        .build());
+                break;
+            }
+            case 3: {
+                customViews.add(ColaCan.create(this)
+                        .setType(ColaCan.Type.ColaCan)
+                        .setSize(iconSize, iconSize)
+                        .setDescription("Description")
+                        .build());
+
+                customViews.add(SodaCan.create(this)
+                        .setType(SodaCan.Type.SodaCan)
+                        .setSize(iconSize, iconSize)
+                        .setDescription("Description")
+                        .build());
+
+                customViews.add(ColaCan2.create(this)
+                        .setType(ColaCan2.Type.ColaCan2)
+                        .setSize(iconSize, iconSize)
+                        .setDescription("Description")
+                        .build());
+                break;
+            }
+            case 4: {
+
+                break;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
         // specify an adapter (see also next example)
         FoodAdapter mAdapter = new FoodAdapter(customViews, this);
@@ -210,10 +269,35 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                     .setType(((Burger) vectorIcon).mType)
                     .setSize(640, 640)
                     .build();
-        } else if (vectorIcon instanceof Fries) {
+        }
+        else if (vectorIcon instanceof Fries) {
             localFoodView = Fries.create(this)
                     .setType(((Fries) vectorIcon).mType)
                     .setSize(640, 640)
+                    .build();
+        }
+        else if (vectorIcon instanceof Steak) {
+            localFoodView = Steak.create(this)
+                    .setType(((Steak) vectorIcon).mType)
+                    .setSize(640, 640)
+                    .build();
+        }
+        else if (vectorIcon instanceof SodaCan) {
+            localFoodView = SodaCan.create(this)
+                    .setType(((SodaCan) vectorIcon).mType)
+                    .setSize(850, 850)
+                    .build();
+        }
+        else if (vectorIcon instanceof ColaCan) {
+            localFoodView = ColaCan.create(this)
+                    .setType(((ColaCan) vectorIcon).mType)
+                    .setSize(850, 850)
+                    .build();
+        }
+        else if (vectorIcon instanceof ColaCan2) {
+            localFoodView = ColaCan2.create(this)
+                    .setType(((ColaCan2) vectorIcon).mType)
+                    .setSize(850, 850)
                     .build();
         }
 
@@ -223,9 +307,11 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         burgerRelativeLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         burgerRelativeLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 
-        final float scale = getResources().getDisplayMetrics().density;
-        int margin_top = (int) (0 * scale + 0.5f);
-        burgerRelativeLayoutParams.topMargin = margin_top;
+        if (!(localFoodView instanceof Burger)) {
+            final float scale = getResources().getDisplayMetrics().density;
+            int margin_top = (int) (16 * scale + 0.5f);
+            burgerRelativeLayoutParams.topMargin = margin_top;
+        }
 
         // Add burger to customView
         ((RelativeLayout) popup_window_layout.findViewById(R.id.food_details_outer_layout)).addView(localFoodView, burgerRelativeLayoutParams);

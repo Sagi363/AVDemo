@@ -3,4 +3,5 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="dollar_sign">$</string>
     <string name="add_to_cart">Add to cart</string>
+    <string name="burger_description">Mouthwatering perfection starts with two sear-sizzled 100% pure beef patties and our special sauce, sandwiched between a sesame seed bun. American cheese, crisp lettuce, onions and pickles top it off.</string>
 </resources>
