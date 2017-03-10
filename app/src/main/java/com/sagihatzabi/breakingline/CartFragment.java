@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
     private OnFragmentInteractionListener mListener;
 
     private LinearLayout mCartLinearLayout;
-    private BurgersRecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
     private ArrayList<SagiVectorIcon> mCart;
     private TextView mPriceTextView;
 
@@ -127,7 +128,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
         void onFragmentInteraction(ArrayList<SagiVectorIcon> cart);
     }
 
-    BurgersRecyclerView createSnappingRecyclerView() {
+    private RecyclerView createSnappingRecyclerView() {
 
         int width = mCartLinearLayout.getWidth();
 
@@ -135,19 +136,16 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
         FoodAdapter mAdapter = new FoodAdapter(mCart, this);
 
         // Create FoodRecyclerView
-        BurgersRecyclerView mRecyclerView =
-                BurgersRecyclerView.create(getActivity())
-                        .addAdapter(mAdapter)
-                        .setNumberOfItems(NUM_OF_ITEMS)
-                        .setOrientation(LinearLayoutManager.HORIZONTAL)
-                        .build();
+        RecyclerView recyclerView = new RecyclerView(getActivity());
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        return mRecyclerView;
+        return recyclerView;
     }
 
     public void addItemToCart(SagiVectorIcon item) {
         this.mCart.add(item);
-        mRecyclerView.mAdapter.notifyDataSetChanged();
+        mRecyclerView.getAdapter().notifyDataSetChanged();
 
         computeCartPrice();
     }
