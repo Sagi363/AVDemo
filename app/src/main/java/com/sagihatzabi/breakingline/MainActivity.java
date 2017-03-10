@@ -11,21 +11,29 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sagihatzabi.breakingline.items.Burger;
+import com.sagihatzabi.breakingline.items.FoodExtra;
+import com.sagihatzabi.breakingline.items.FoodExtraState;
 import com.sagihatzabi.breakingline.items.Fries;
 import com.sagihatzabi.breakingline.items.SagiVectorIcon;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FoodAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements FoodAdapter.OnItemClickListener, FoodExtraAdapter.OnItemClickListener {
 
     final int NUM_OF_ITEMS = 3;
+
+    int screenWidth;
+    int screenHeight;
 
     private LinearLayout mLinearLayout;
     private PopupWindow mPopupWindow;
@@ -62,9 +70,9 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x;
-        int height = size.y;
-        int iconSize = width / 3;
+        screenWidth = size.x;
+        screenHeight = size.y;
+        int iconSize = screenWidth / NUM_OF_ITEMS;
 
 //        customViews.add(new Burger(this, Burger.Type.BeefBurger, iconSize, iconSize));
         customViews.add(Burger.create(this)
@@ -195,22 +203,19 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         View popup_window_layout = inflater.inflate(R.layout.food_details, null);
 
         // Food
-        View localFoodView = null;
+        SagiVectorIcon localFoodView = null;
 
         if (vectorIcon instanceof Burger) {
             localFoodView = Burger.create(this)
                     .setType(((Burger) vectorIcon).mType)
-                    .setSize(480, 480)
+                    .setSize(640, 640)
                     .build();
-
-        }
-        else if (vectorIcon instanceof Fries) {
+        } else if (vectorIcon instanceof Fries) {
             localFoodView = Fries.create(this)
                     .setType(((Fries) vectorIcon).mType)
-                    .setSize(480, 480)
+                    .setSize(640, 640)
                     .build();
         }
-
 
         ViewGroup.LayoutParams localburgerLayoutParams = localFoodView.getLayoutParams();
         RelativeLayout.LayoutParams burgerRelativeLayoutParams =
@@ -219,8 +224,8 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         burgerRelativeLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 
         final float scale = getResources().getDisplayMetrics().density;
-        int margin_24 = (int) (24 * scale + 0.5f);
-        burgerRelativeLayoutParams.topMargin = margin_24;
+        int margin_top = (int) (0 * scale + 0.5f);
+        burgerRelativeLayoutParams.topMargin = margin_top;
 
         // Add burger to customView
         ((RelativeLayout) popup_window_layout.findViewById(R.id.food_details_outer_layout)).addView(localFoodView, burgerRelativeLayoutParams);
@@ -228,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         TextView tvPrice = (TextView) popup_window_layout.findViewById(R.id.food_details_price);
         TextView tvName = (TextView) popup_window_layout.findViewById(R.id.food_details_name);
         TextView tvDescription = (TextView) popup_window_layout.findViewById(R.id.food_details_description);
+        LinearLayout extras = (LinearLayout) popup_window_layout.findViewById(R.id.food_details_extras);
 
         tvPrice.setText(vectorIcon.mPrice + getString(R.string.dollar_sign));
         tvName.setText(vectorIcon.mName);
@@ -235,16 +241,56 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
 
         TextView btnAddToCart = (TextView) popup_window_layout.findViewById(R.id.food_details_add_cart);
 
+        List<FoodExtra> extrasList = new ArrayList<>();
+
+        for (FoodExtraState foodExtraState : localFoodView.mExtras.values()) {
+            int iconSize = (screenWidth - 90) / 4;
+            extrasList.add(FoodExtra.create(this).setSize(iconSize, 300).setType(foodExtraState.type).build());
+        }
+
+        // specify an adapter (see also next example)
+        FoodExtraAdapter mAdapter = new FoodExtraAdapter(extrasList, this);
+
+        extras.addView(FoodExtraRecyclerView.create(this)
+                .addAdapter(mAdapter)
+                .setIcon(localFoodView)
+                .setNumberOfItems(4)
+                .setOrientation(LinearLayoutManager.HORIZONTAL)
+                .build());
+
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // Pass Details back to activity
+                Animation anim = new ScaleAnimation(
+                        0.8f, 1.05f, // Start and end values for the X axis scaling
+                        0.8f, 1.05f, // Start and end values for the Y axis scaling
+                        Animation.RELATIVE_TO_SELF, 0.5f, // Pivot point of X scaling
+                        Animation.RELATIVE_TO_SELF, 0.84f); // Pivot point of Y scaling
+                anim.setFillAfter(false); // Needed to keep the result of the animation
+                anim.setDuration(300);
+                anim.setInterpolator(new BounceInterpolator());
 
+                anim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
 
-                if (mPopupWindow != null && mPopupWindow.isShowing()) {
-                    mPopupWindow.dismiss();
-                }
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        if (mPopupWindow != null && mPopupWindow.isShowing()) {
+                            mPopupWindow.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+
+                v.startAnimation(anim);
             }
         });
 
@@ -303,6 +349,8 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                 */
         // Finally, show the popup window at the center location of root relative layout
         mPopupWindow.showAtLocation(mLinearLayout, Gravity.CENTER, 0, 0);
+
+//        mPopupWindow.setBackgroundDrawable(getResources().getColor(R.color.transparentBackground));
     }
 
     @Override
@@ -314,4 +362,33 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         }
     }
 
+    @Override
+    public void onItemClick(FoodExtra foodExtra, SagiVectorIcon icon, boolean stateAfterClick) {
+        if (icon instanceof Burger) {
+            Burger burger = (Burger)icon;
+
+            switch (foodExtra.mType) {
+                case Veggs: {
+                    Burger b = stateAfterClick ? burger.addVegg() : burger.removeVegg();
+                    break;
+                }
+                case Cheese: {
+                    Burger b = stateAfterClick ? burger.addCheese() : burger.removeCheese();
+                    break;
+                }
+                case Pickle: {
+                }
+                case Bacon: {
+                }
+                case Egg: {
+                }
+                case Chili: {
+                }
+                default: {
+                    burger.scaleViewAnimation(0.5f, 1.0f);
+                    break;
+                }
+            }
+        }
+    }
 }

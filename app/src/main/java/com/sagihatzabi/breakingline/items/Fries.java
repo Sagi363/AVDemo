@@ -17,6 +17,7 @@ import com.sagihatzabi.breakingline.R;
 import com.sagihatzabi.breakingline.tools.AnimRunnable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Bacon;
@@ -41,11 +42,9 @@ public class Fries extends SagiVectorIcon {
     public boolean bSweetPotato = false;
     public boolean bHotChili = false;
 
-    private List<FoodExtra.Type> mExtras;
-
     public SagiVectorIcon build() {
-        this.mExtras = new ArrayList<>();
-        mExtras.add(Chili);
+        this.mExtras = new HashMap<>();
+        mExtras.put(Chili, new FoodExtraState(Chili, false));
 
         try {
             this.setDrawableId(DRAWABLE_WITH_ANIMATION)
@@ -121,6 +120,11 @@ public class Fries extends SagiVectorIcon {
     @Override
     public Fries setDescription(String description) {
         return (Fries) super.setDescription(description);
+    }
+
+    @Override
+    public Fries addElevation(int elevation) {
+        return ((Fries) super.addElevation(elevation));
     }
 
     @Override

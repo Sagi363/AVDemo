@@ -6,11 +6,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
+import com.sagihatzabi.breakingline.items.SagiVectorIcon;
+
 public class FoodExtraRecyclerView extends RecyclerView {
 
 	private int mMaxNumberOfItems = 5;
 	private int mNumberOfItems;
-	private Adapter mAdapter;
+	private FoodExtraAdapter mAdapter;
+	private SagiVectorIcon icon;
 
 	public FoodExtraRecyclerView(Context context) {
 		this(context, null);
@@ -30,6 +33,7 @@ public class FoodExtraRecyclerView extends RecyclerView {
 			// TODO: ERROR
 		}
 		else {
+			mAdapter.setIcon(this.icon);
 			this.setAdapter(mAdapter);
 		}
 
@@ -46,7 +50,7 @@ public class FoodExtraRecyclerView extends RecyclerView {
 		return this;
 	}
 
-	public FoodExtraRecyclerView addAdapter(Adapter adapter) {
+	public FoodExtraRecyclerView addAdapter(FoodExtraAdapter adapter) {
 		this.mAdapter = adapter;
 		return this;
 	}
@@ -54,5 +58,10 @@ public class FoodExtraRecyclerView extends RecyclerView {
 
 	public static FoodExtraRecyclerView create(@NonNull final Context context) {
 		return new FoodExtraRecyclerView(context);
+	}
+
+	public FoodExtraRecyclerView setIcon(SagiVectorIcon icon) {
+		this.icon = icon;
+		return this;
 	}
 }

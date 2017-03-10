@@ -26,7 +26,7 @@ public class FoodExtra extends SagiVectorIcon {
 
     public FoodExtra.Type mType;
 
-    public SagiVectorIcon build() {
+    public FoodExtra build() {
         try {
             this.setDrawableId(BASE_DRAWABLE_WITHOUT_ANIMATION)
                 .setBaseDrawableWitoutAnimationId(BASE_DRAWABLE_WITHOUT_ANIMATION)
