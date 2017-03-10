@@ -8,6 +8,13 @@
         android:background="@drawable/background_gradient_color"
         tools:context="com.sagihatzabi.breakingline.MainActivity">
 
+    <View android:id="@+id/black_background"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:elevation="8dp"
+        android:visibility="gone"
+        android:background="@color/transparentBackground"/>
+
     <LinearLayout
             android:id="@+id/main_activity_inner_layout"
             android:layout_width="match_parent"

@@ -11,6 +11,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.ScaleAnimation;
@@ -268,36 +270,42 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
             localFoodView = Burger.create(this)
                     .setType(((Burger) vectorIcon).mType)
                     .setSize(640, 640)
+                    .addElevation(100)
                     .build();
         }
         else if (vectorIcon instanceof Fries) {
             localFoodView = Fries.create(this)
                     .setType(((Fries) vectorIcon).mType)
                     .setSize(640, 640)
+                    .addElevation(100)
                     .build();
         }
         else if (vectorIcon instanceof Steak) {
             localFoodView = Steak.create(this)
                     .setType(((Steak) vectorIcon).mType)
                     .setSize(640, 640)
+                    .addElevation(100)
                     .build();
         }
         else if (vectorIcon instanceof SodaCan) {
             localFoodView = SodaCan.create(this)
                     .setType(((SodaCan) vectorIcon).mType)
                     .setSize(850, 850)
+                    .addElevation(100)
                     .build();
         }
         else if (vectorIcon instanceof ColaCan) {
             localFoodView = ColaCan.create(this)
                     .setType(((ColaCan) vectorIcon).mType)
                     .setSize(850, 850)
+                    .addElevation(100)
                     .build();
         }
         else if (vectorIcon instanceof ColaCan2) {
             localFoodView = ColaCan2.create(this)
                     .setType(((ColaCan2) vectorIcon).mType)
                     .setSize(850, 850)
+                    .addElevation(100)
                     .build();
         }
 
@@ -370,8 +378,6 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                         if (mPopupWindow != null && mPopupWindow.isShowing()) {
                             // Pass Details back to activity
                             mCartFragment.addItemToCart(vectorIcon);
-
-                            mPopupWindow.dismiss();
                         }
                     }
 
@@ -398,6 +404,11 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                         width : the popup's width
                         height : the popup's height
                 */
+        MainActivity.this.findViewById(R.id.black_background).setVisibility(View.VISIBLE);
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(getResources().getColor(R.color.colorDarkStatusBar));
+
         // Initialize a new instance of popup window
         mPopupWindow = new PopupWindow(
                 popup_window_layout,
@@ -448,6 +459,11 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
     public void onBackPressed() {
         if (mPopupWindow != null && mPopupWindow.isShowing()) {
             mPopupWindow.dismiss();
+
+            MainActivity.this.findViewById(R.id.black_background).setVisibility(View.GONE);
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorGradientLight));
         } else {
             super.onBackPressed();
         }
