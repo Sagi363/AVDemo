@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorDarkStatusBar">#018DC6</color>
     <color name="colorGradientLight">#00ADF2</color>
-    <color name="colorGradientLightWithAlpha">#dc00adf2</color>
+    <color name="colorGradientLightWithAlpha">#f000adf2</color>
     <color name="colorGradientDark">#0086BF</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBlue">#1cabeb</color>
