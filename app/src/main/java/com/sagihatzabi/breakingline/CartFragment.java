@@ -149,9 +149,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnItemClickLis
 
     public void RemoveItemFromCart(SagiVectorIcon item) {
 
-        SagiVectorIcon localItem = Globals.getFoodIcon(getActivity(), item, 100, 50, false);
-
-        this.mCart.remove(localItem);
+        this.mCart.remove(item);
         mRecyclerView.getAdapter().notifyDataSetChanged();
 
         computeCartPrice();

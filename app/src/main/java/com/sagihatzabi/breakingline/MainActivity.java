@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                             if (mPopupWindow != null && mPopupWindow.isShowing()) {
 
                                 // Pass Details back to activity
-                                mCartFragment.RemoveItemFromCart(localFoodView);
+                                mCartFragment.RemoveItemFromCart(vectorIcon);
                                 removeBlackShadow();
                                 mPopupWindow.dismiss();
                             }
