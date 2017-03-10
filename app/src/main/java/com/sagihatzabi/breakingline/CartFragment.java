@@ -136,8 +136,6 @@ public class CartFragment extends Fragment implements CartAdapter.OnItemClickLis
 
     private RecyclerView createRecyclerView() {
 
-        int width = mCartLinearLayout.getWidth();
-
         // specify an adapter (see also next example)
         CartAdapter mAdapter = new CartAdapter(mCart, this, ContextCompat.getColor(getActivity(), android.R.color.black));
 
@@ -170,12 +168,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnItemClickLis
     }
 
     private void computeCartPrice() {
-        float price = 0;
-
-        for (SagiVectorIcon sagiVectorIcon : this.mCart) {
-            // TODO: Compute price here
-            price += Float.valueOf(sagiVectorIcon.mPrice);
-        }
+        float price = Globals.round(Globals.computeCartPrice(mCart), 2);
 
         mPriceTextView.setText(price + getString(R.string.dollar_sign));
     }

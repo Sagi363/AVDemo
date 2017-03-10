@@ -1,204 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:scaleType="fitCenter"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_icon"
-            android:id="@+id/imageButton"
-            android:layout_marginTop="14dp"
-            android:layout_marginRight="10dp" />
-
-        <TextView
-            android:id="@+id/activity_order_summery_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Total"
-            android:textColor="@android:color/black"
-            android:textSize="25sp"
-            android:layout_marginTop="16dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_gravity="center_horizontal">
+
+        <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_icon"
+                android:id="@+id/imageButton"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="10dp"/>
+
+        <TextView
+                android:id="@+id/activity_order_summery_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Total"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:layout_marginTop="16dp"
+                android:layout_centerHorizontal="true"/>
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/activity_order_summery_total_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/add_to_cart_button"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:text="10.99$"
-        android:textSize="22sp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="116dp">
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:layout_height="1dp"
-        android:background="@color/divider_color" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:scaleType="fitCenter"
-            android:layout_marginTop="7dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_clockwise_rotation" />
-
-
-        <TextView
-            android:id="@+id/activity_order_summery_arrive_in_title"
+            android:id="@+id/activity_order_summery_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Arrive In"
-            android:textColor="@android:color/black"
-            android:textSize="25sp"
-            android:layout_marginTop="8dp"
-            android:layout_centerHorizontal="true"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/activity_order_summery_arrive_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/blue_button"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:text="15 minutes"
-        android:textSize="22sp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:layout_height="1dp"
-        android:background="@color/divider_color" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:scaleType="fitCenter"
-            android:layout_marginTop="7dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_placeholder_tool"
-            android:id="@+id/imageButton2" />
-
-        <TextView
-            android:id="@+id/activity_order_summery_branch_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Total"
-            android:textColor="@android:color/black"
-            android:textSize="25sp"
-            android:layout_marginTop="8dp"
-            android:layout_centerHorizontal="true"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/activity_order_summery_branch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/blue_button"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:text="Albuqueque"
-        android:textSize="22sp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:layout_height="1dp"
-        android:background="@color/divider_color" />
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <TextView
-            android:id="@+id/activity_order_summery_pay"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/red_button"
-            android:padding="6dp"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:text="Cancel Order"
-            android:gravity="center"
-            android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/activity_order_summery_cancel"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:background="@drawable/add_to_cart_button"
-            android:padding="6dp"
-            android:textSize="20sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:text="10.99$"
+            android:textSize="22sp"
+            android:layout_gravity="center_horizontal"
             android:textColor="@android:color/white"
-            android:text="Pay"
-            android:gravity="center"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"/>
+
+    <LinearLayout
+            android:id="@+id/activity_order_summery_items"
+            android:layout_width="match_parent"
+            android:layout_height="116dp"
+            android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="1dp"
+            android:background="@color/divider_color"/>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+        <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_clockwise_rotation"/>
+
+
+        <TextView
+                android:id="@+id/activity_order_summery_arrive_in_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Arrive In"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"/>
+
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/activity_order_summery_arrive_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_button"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:text="15 minutes"
+            android:textSize="22sp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"/>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="1dp"
+            android:background="@color/divider_color"/>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+        <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_placeholder_tool"
+                android:id="@+id/imageButton2"/>
+
+        <TextView
+                android:id="@+id/activity_order_summery_branch_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Branch"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"/>
+
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/activity_order_summery_branch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_button"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:text="Albuqueque"
+            android:textSize="22sp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"/>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="1dp"
+            android:background="@color/divider_color"/>
+
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+        <TextView
+                android:id="@+id/activity_order_summery_pay"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/red_button"
+                android:padding="6dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:text="Cancel Order"
+                android:gravity="center"
+                android:layout_marginTop="8dp"/>
+
+        <TextView
+                android:id="@+id/activity_order_summery_cancel"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/add_to_cart_button"
+                android:padding="6dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:text="Pay"
+                android:gravity="center"
+                android:layout_marginTop="8dp"/>
 
     </LinearLayout>
 

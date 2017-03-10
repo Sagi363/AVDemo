@@ -1,5 +1,6 @@
 package com.sagihatzabi.breakingline;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -381,6 +382,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                     public void onAnimationEnd(Animation animation) {
                         if (mPopupWindow != null && mPopupWindow.isShowing()) {
                             // Pass Details back to activity
+
                             mCartFragment.addItemToCart(localFoodView);
 
                             removeBlackShadow();
@@ -481,7 +483,14 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
     public void onFragmentInteraction(ArrayList<SagiVectorIcon> cart) {
         // TODO: implement
         // Proceed here to payment
-        Toast.makeText(this, "Pay Cart. items: " + cart.size(), Toast.LENGTH_SHORT).show();
+        if (cart.size() <= 0) {
+            Toast.makeText(this, "Please add items to your cart", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            OrderSummeryActivity.cartItems = cart;
+            startActivity(new Intent(this, OrderSummeryActivity.class));
+        }
+
     }
 
     public void onItemClick(FoodExtra foodExtra, SagiVectorIcon icon, boolean stateAfterClick) {
