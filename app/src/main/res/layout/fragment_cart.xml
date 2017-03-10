@@ -1,0 +1,57 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.sagihatzabi.breakingline.CartFragment"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:weightSum="1"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+    <View
+            android:layout_width="1dp"
+            android:layout_margin="4dp"
+            android:layout_weight="0.01"
+            android:background="?android:attr/listDivider"
+            android:layout_height="match_parent"/>
+
+    <LinearLayout
+            android:id="@+id/fragment_cart_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:orientation="horizontal">
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/fragment_cart_pay_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.74"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/fragment_cart_pay_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_to_cart_button"
+                android:padding="10dp"
+                android:text="10.99$"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center_vertical"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="@string/tap_to_pay"
+                android:id="@+id/textView"
+                android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+</LinearLayout>

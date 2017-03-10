@@ -1,6 +1,7 @@
 package com.sagihatzabi.breakingline;
 
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.NestedScrollView;
@@ -23,19 +24,24 @@ import com.sagihatzabi.breakingline.items.SagiVectorIcon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements FoodAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements FoodAdapter.OnItemClickListener,
+        CartFragment.OnFragmentInteractionListener {
 
     final int NUM_OF_ITEMS = 3;
 
     private LinearLayout mLinearLayout;
     private PopupWindow mPopupWindow;
+    View mCartFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLinearLayout = (LinearLayout) findViewById(R.id.activity_main);
+        // Get Fragment
+        mCartFragment = findViewById(R.id.main_activity_cart_fragment);
+
+        mLinearLayout = (LinearLayout) findViewById(R.id.main_activity_inner_layout);
 
         // Add menu programmatically
         final LinearLayout menu = new LinearLayout(this);
@@ -314,4 +320,8 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         }
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
