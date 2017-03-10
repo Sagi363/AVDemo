@@ -74,7 +74,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
         });
 
         mPriceTextView = (TextView) view.findViewById(R.id.fragment_cart_price_button);
-
+        mPriceTextView.setText(0 + getString(R.string.dollar_sign));
 
         mCart = new ArrayList<>();
         mRecyclerView = createRecyclerView();
@@ -146,7 +146,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
 
     public void addItemToCart(SagiVectorIcon item) {
 
-        SagiVectorIcon localItem = Globals.getFoodIcon(getActivity(), item, 1000, 50);
+        SagiVectorIcon localItem = Globals.getFoodIcon(getActivity(), item, 100, 50, false);
 
         this.mCart.add(localItem);
         mRecyclerView.getAdapter().notifyDataSetChanged();
@@ -159,7 +159,9 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
 
         for (SagiVectorIcon sagiVectorIcon : this.mCart) {
             // TODO: Compute price here
-//            price += sagiVectorIcon.mPrice;
+            price += Float.valueOf(sagiVectorIcon.mPrice);
         }
+
+        mPriceTextView.setText(price + getString(R.string.dollar_sign));
     }
 }

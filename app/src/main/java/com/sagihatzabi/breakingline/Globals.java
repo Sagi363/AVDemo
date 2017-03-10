@@ -15,7 +15,7 @@ import com.sagihatzabi.breakingline.items.Steak;
  */
 
 public class Globals {
-    public static SagiVectorIcon getFoodIcon(Context context, SagiVectorIcon originalIcon, int regSize, int canSize) {
+    public static SagiVectorIcon getFoodIcon(Context context, SagiVectorIcon originalIcon, int regSize, int canSize, boolean isScaledCans) {
         SagiVectorIcon localFoodView = null;
 
         if (originalIcon instanceof Burger) {
@@ -37,18 +37,24 @@ public class Globals {
                     .build();
         }
         else if (originalIcon instanceof SodaCan) {
+            ((SodaCan) originalIcon).mType.isScale = isScaledCans;
+
             localFoodView = SodaCan.create(context)
                     .setType(((SodaCan) originalIcon).mType)
                     .setSize(canSize, canSize)
                     .build();
         }
         else if (originalIcon instanceof ColaCan) {
+            ((ColaCan) originalIcon).mType.isScale = isScaledCans;
+
             localFoodView = ColaCan.create(context)
                     .setType(((ColaCan) originalIcon).mType)
                     .setSize(canSize, canSize)
                     .build();
         }
         else if (originalIcon instanceof ColaCan2) {
+            ((ColaCan2) originalIcon).mType.isScale = isScaledCans;
+
             localFoodView = ColaCan2.create(context)
                     .setType(((ColaCan2) originalIcon).mType)
                     .setSize(canSize, canSize)

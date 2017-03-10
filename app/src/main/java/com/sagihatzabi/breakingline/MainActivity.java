@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         View popup_window_layout = inflater.inflate(R.layout.food_details, null);
 
         // Food
-        SagiVectorIcon localFoodView = Globals.getFoodIcon(this, vectorIcon, 650, 850);
+        SagiVectorIcon localFoodView = Globals.getFoodIcon(this, vectorIcon, 650, 850, true);
 
         ViewGroup.LayoutParams localburgerLayoutParams = localFoodView.getLayoutParams();
         RelativeLayout.LayoutParams burgerRelativeLayoutParams =

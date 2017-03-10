@@ -1,20 +1,14 @@
 package com.sagihatzabi.breakingline.items;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Animatable2;
-import android.graphics.drawable.AnimatedVectorDrawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
-import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 
 import com.sagihatzabi.breakingline.R;
 
 import java.util.HashMap;
-
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Chili;
 
 /**
  * Created by sagihatzabi on 05/02/2017.
@@ -35,8 +29,10 @@ public class ColaCan extends SagiVectorIcon {
         this.mExtras = new HashMap<>();
 //        mExtras.put(Chili, new FoodExtraState(Chili, false));
 
-        this.setScaleX(1.25f);
-        this.setScaleY(1.25f);
+        if (mType.isScale) {
+            this.setScaleX(1.25f);
+            this.setScaleY(1.25f);
+        }
 
         try {
             this.setDrawableId(DRAWABLE_WITH_ANIMATION)
@@ -56,6 +52,7 @@ public class ColaCan extends SagiVectorIcon {
     public enum Type {
         ColaCan("Cola", 0.99f, R.style.NoStyle);
 
+        public boolean isScale;
         private String stringValue;
         private float priceValueInDollars;
         private int styleValue;
@@ -64,6 +61,14 @@ public class ColaCan extends SagiVectorIcon {
             stringValue = name;
             priceValueInDollars = price;
             styleValue = style;
+            isScale = true;
+        }
+
+        Type(String name, float price, @StyleRes int style, boolean scale) {
+            stringValue = name;
+            priceValueInDollars = price;
+            styleValue = style;
+            isScale = scale;
         }
 
         String getName() {

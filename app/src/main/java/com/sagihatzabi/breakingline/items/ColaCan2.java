@@ -29,9 +29,10 @@ public class ColaCan2 extends SagiVectorIcon {
         this.mExtras = new HashMap<>();
 //        mExtras.put(Chili, new FoodExtraState(Chili, false));
 
-        this.setScaleX(1.25f);
-        this.setScaleY(1.25f);
-
+        if (mType.isScale) {
+            this.setScaleX(1.25f);
+            this.setScaleY(1.25f);
+        }
         try {
             this.setDrawableId(DRAWABLE_WITH_ANIMATION)
                 .setBaseDrawableWitoutAnimationId(BASE_DRAWABLE_WITHOUT_ANIMATION)
@@ -50,6 +51,7 @@ public class ColaCan2 extends SagiVectorIcon {
     public enum Type {
         ColaCan2("Super Drink", 0.99f, R.style.NoStyle);
 
+        public boolean isScale;
         private String stringValue;
         private float priceValueInDollars;
         private int styleValue;
@@ -58,6 +60,14 @@ public class ColaCan2 extends SagiVectorIcon {
             stringValue = name;
             priceValueInDollars = price;
             styleValue = style;
+            isScale = true;
+        }
+
+        Type(String name, float price, @StyleRes int style, boolean scale) {
+            stringValue = name;
+            priceValueInDollars = price;
+            styleValue = style;
+            isScale = scale;
         }
 
         String getName() {
