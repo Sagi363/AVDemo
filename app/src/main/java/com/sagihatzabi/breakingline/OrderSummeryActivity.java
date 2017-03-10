@@ -86,7 +86,7 @@ public class OrderSummeryActivity extends AppCompatActivity {
         }, ContextCompat.getColor(this, android.R.color.black));
 
         // Create FoodRecyclerView
-        RecyclerView recyclerView = new RecyclerView();
+        RecyclerView recyclerView = new RecyclerView(this);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 

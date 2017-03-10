@@ -80,7 +80,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         tvName.setText(((SagiVectorIcon) v).mName);
         tvDescription.setText(((SagiVectorIcon) v).mDescription);
 
-        TextView btnAddToCart = (TextView) popup_window_layout.findViewById(R.id.food_details_add_cart);
+        TextView btnAddToCart = (TextView) popup_window_layout.findViewById(R.id.food_details_update);
 
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override

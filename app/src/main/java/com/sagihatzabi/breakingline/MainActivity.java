@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
      */
     @Override
     public void onItemClick(SagiVectorIcon vectorIcon) {
-        showPopUpWindow(vectorIcon);
+        showPopUpWindow(vectorIcon, false);
     }
 
 //    final int NUM_OF_EXTRAS = 4;
@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
 //    // Add the menu to activity
 //        ((ConstraintLayout) findViewById(R.id.activity_main)).addView(menu);
 
-    private void showPopUpWindow(final SagiVectorIcon vectorIcon) {
+    public void showPopUpWindow(final SagiVectorIcon vectorIcon, boolean update) {
         // Initialize a new instance of LayoutInflater service
         LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         View popup_window_layout = inflater.inflate(R.layout.food_details, null);
 
         // Food
-        SagiVectorIcon localFoodView = Globals.getFoodIcon(this, vectorIcon, 650, 850, true);
+        final SagiVectorIcon localFoodView = Globals.getFoodIcon(this, vectorIcon, 650, 850, true);
         localFoodView.setElevation(100);
 
         ViewGroup.LayoutParams localburgerLayoutParams = localFoodView.getLayoutParams();
@@ -293,7 +293,53 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         tvName.setText(vectorIcon.mName);
         tvDescription.setText(vectorIcon.mDescription);
 
-        TextView btnAddToCart = (TextView) popup_window_layout.findViewById(R.id.food_details_add_cart);
+        TextView btnAddToCart = (TextView) popup_window_layout.findViewById(R.id.food_details_update);
+        TextView btnRemoveFromCart = (TextView) popup_window_layout.findViewById(R.id.food_details_remove);
+
+        if (update) {
+            btnRemoveFromCart.setVisibility(View.VISIBLE);
+
+            btnRemoveFromCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Animation anim = new ScaleAnimation(
+                            0.8f, 1.05f, // Start and end values for the X axis scaling
+                            0.8f, 1.05f, // Start and end values for the Y axis scaling
+                            Animation.RELATIVE_TO_SELF, 0.5f, // Pivot point of X scaling
+                            Animation.RELATIVE_TO_SELF, 0.84f); // Pivot point of Y scaling
+                    anim.setFillAfter(false); // Needed to keep the result of the animation
+                    anim.setDuration(300);
+                    anim.setInterpolator(new BounceInterpolator());
+
+                    anim.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            if (mPopupWindow != null && mPopupWindow.isShowing()) {
+
+                                // Pass Details back to activity
+                                mCartFragment.RemoveItemFromCart(localFoodView);
+                                mPopupWindow.dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+                    v.startAnimation(anim);
+                }
+            });
+        }
+        else {
+            btnRemoveFromCart.setVisibility(View.GONE);
+        }
 
         List<FoodExtra> extrasList = new ArrayList<>();
 
@@ -316,9 +362,6 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
             @Override
             public void onClick(View v) {
 
-
-
-
                 Animation anim = new ScaleAnimation(
                         0.8f, 1.05f, // Start and end values for the X axis scaling
                         0.8f, 1.05f, // Start and end values for the Y axis scaling
@@ -337,7 +380,8 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                     public void onAnimationEnd(Animation animation) {
                         if (mPopupWindow != null && mPopupWindow.isShowing()) {
                             // Pass Details back to activity
-                            mCartFragment.addItemToCart(vectorIcon);
+
+                            mCartFragment.addItemToCart(localFoodView);
                             mPopupWindow.dismiss();
                         }
                     }

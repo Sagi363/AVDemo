@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * Use the {@link CartFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CartFragment extends Fragment implements FoodAdapter.OnItemClickListener {
+public class CartFragment extends Fragment implements CartAdapter.OnItemClickListener {
 
 
     private static final int NUM_OF_ITEMS = 3;
@@ -77,6 +77,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
                 new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT);
 
+
         mPriceTextView = (TextView) view.findViewById(R.id.fragment_cart_price_button);
         mPriceTextView.setText(0 + getString(R.string.dollar_sign));
 
@@ -116,7 +117,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
 
     @Override
     public void onItemClick(SagiVectorIcon vectorIcon) {
-
+        ((MainActivity)getActivity()).showPopUpWindow(vectorIcon, true);
     }
 
     /**
@@ -136,7 +137,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
     private RecyclerView createRecyclerView() {
 
         // specify an adapter (see also next example)
-        FoodAdapter mAdapter = new FoodAdapter(mCart, this, ContextCompat.getColor(getActivity(), android.R.color.black));
+        CartAdapter mAdapter = new CartAdapter(mCart, this, ContextCompat.getColor(getActivity(), android.R.color.black));
 
         // Create FoodRecyclerView
         RecyclerView recyclerView = new RecyclerView(getActivity());
@@ -144,6 +145,16 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         return recyclerView;
+    }
+
+    public void RemoveItemFromCart(SagiVectorIcon item) {
+
+        SagiVectorIcon localItem = Globals.getFoodIcon(getActivity(), item, 100, 50, false);
+
+        this.mCart.remove(localItem);
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+
+        computeCartPrice();
     }
 
     public void addItemToCart(SagiVectorIcon item) {

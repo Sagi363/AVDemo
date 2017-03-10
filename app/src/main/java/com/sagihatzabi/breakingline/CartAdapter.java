@@ -3,6 +3,7 @@ package com.sagihatzabi.breakingline;
 import android.support.annotation.ColorRes;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * Created by sagihatzabi on 11/02/2017.
  */
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> implements OnClickListener {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> implements OnClickListener {
 
     public interface OnItemClickListener {
         void onItemClick(SagiVectorIcon vectorIcon);
@@ -29,7 +30,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
     private List<SagiVectorIcon> mIcons;
     private final OnItemClickListener listener;
     @ColorRes
-    private int mColorId;
+    private int mColor;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout mLinearLayout;
@@ -40,25 +41,25 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
 
         public ViewHolder(View v) {
             super(v);
-            mLinearLayout = (LinearLayout) itemView.findViewById(R.id.food_item_linearlayout);
-            mName = (TextView) itemView.findViewById(R.id.food_item_name);
-            mPrice = (TextView) itemView.findViewById(R.id.food_item_price);
+            mLinearLayout = (LinearLayout) itemView.findViewById(R.id.food_item_cart_linearlayout);
+            mName = (TextView) itemView.findViewById(R.id.food_item_cart_name);
+            mPrice = (TextView) itemView.findViewById(R.id.food_item_cart_price);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public FoodAdapter(List<SagiVectorIcon> mIcons, OnItemClickListener listener, int colorId) {
+    public CartAdapter(List<SagiVectorIcon> mIcons, OnItemClickListener listener, int color) {
         this.mIcons = mIcons;
         this.listener = listener;
-        this.mColorId = colorId;
+        this.mColor = color;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public FoodAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CartAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.food_item, parent, false);
+                .inflate(R.layout.food_item_cart, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(itemView);
 
@@ -79,19 +80,23 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
         if(icon.getParent() != null)
             ((ViewGroup)icon.getParent()).removeView(icon); // <- fix
 
-        //Fix
         if (icon instanceof SodaCan || icon instanceof ColaCan || icon instanceof ColaCan2) {
-            LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            llp.setMargins(0, 0, 0, 0); // llp.setMargins(left, top, right, bottom);
-            holder.mName.setLayoutParams(llp);
+            icon.setSize(110, 180);
         }
+        else {
+            icon.setSize(220, 220);
+            icon.setPadding(0, -20, 0, 0);
+        }
+
+        icon.setGravity(Gravity.CENTER_HORIZONTAL);
+
+//        holder.mLinearLayout.setBackgroundColor(icon.getResources().getColor(R.color.color_cheeseLightColor));
 
         if (icon.getParent() == null) holder.mLinearLayout.addView(icon, 0);
         holder.mName.setText(icon.mName);
-        holder.mName.setTextColor(mColorId);
+        holder.mName.setTextColor(mColor);
         holder.mPrice.setText(icon.mPrice + "$");
-        holder.mPrice.setTextColor(mColorId);
+        holder.mPrice.setTextColor(mColor);
         holder.mLinearLayout.setOnClickListener(this);
     }
 
