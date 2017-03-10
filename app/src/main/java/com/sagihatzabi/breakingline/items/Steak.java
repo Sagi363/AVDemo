@@ -52,7 +52,7 @@ public class Steak extends SagiVectorIcon {
     }
 
     public enum Type {
-        Steak("Steak", 12.99f, R.style.NoStyle);
+        Steak("Sinta Steak", 12.99f, R.style.NoStyle);
 
         private String stringValue;
         private float priceValueInDollars;

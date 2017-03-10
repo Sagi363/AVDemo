@@ -22,18 +22,21 @@ public class Globals {
             localFoodView = Burger.create(context)
                     .setType(((Burger) originalIcon).mType)
                     .setSize(regSize, regSize)
+                    .setDescription(context.getString(R.string.burger_description))
                     .build();
         }
         else if (originalIcon instanceof Fries) {
             localFoodView = Fries.create(context)
                     .setType(((Fries) originalIcon).mType)
                     .setSize(regSize, regSize)
+                    .setDescription(context.getString(R.string.burger_description))
                     .build();
         }
         else if (originalIcon instanceof Steak) {
             localFoodView = Steak.create(context)
                     .setType(((Steak) originalIcon).mType)
                     .setSize(regSize, regSize)
+                    .setDescription(context.getString(R.string.burger_description))
                     .build();
         }
         else if (originalIcon instanceof SodaCan) {
@@ -42,6 +45,7 @@ public class Globals {
             localFoodView = SodaCan.create(context)
                     .setType(((SodaCan) originalIcon).mType)
                     .setSize(canSize, canSize)
+                    .setDescription(context.getString(R.string.burger_description))
                     .build();
         }
         else if (originalIcon instanceof ColaCan) {
@@ -50,6 +54,7 @@ public class Globals {
             localFoodView = ColaCan.create(context)
                     .setType(((ColaCan) originalIcon).mType)
                     .setSize(canSize, canSize)
+                    .setDescription(context.getString(R.string.burger_description))
                     .build();
         }
         else if (originalIcon instanceof ColaCan2) {
@@ -58,6 +63,7 @@ public class Globals {
             localFoodView = ColaCan2.create(context)
                     .setType(((ColaCan2) originalIcon).mType)
                     .setSize(canSize, canSize)
+                    .setDescription(context.getString(R.string.burger_description))
                     .build();
         }
 

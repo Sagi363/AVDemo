@@ -95,30 +95,24 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                 customViews.add(Steak.create(this)
                         .setType(Steak.Type.Steak)
                         .setSize(iconSize, iconSize)
-                        .setName("Sinta Steak")
                         .setDescription(getString(R.string.burger_description))
                         .build());
 
                 customViews.add(Burger.create(this)
                         .setType(Burger.Type.BeefBurger)
                         .setSize(iconSize, iconSize)
-                        .setName("Burger")
-                        .setPriceInDollars(9.99f)
                         .setDescription(getString(R.string.burger_description))
                         .build());
 
                 customViews.add(Burger.create(this)
                         .setType(Burger.Type.ChikenBurger)
                         .setSize(iconSize, iconSize)
-                        .setName("Chiken Burger")
-                        .setPriceInDollars(8.99f)
                         .setDescription(getString(R.string.burger_description))
                         .build());
 
                 customViews.add(Steak.create(this)
                         .setType(Steak.Type.Steak)
                         .setSize(iconSize, iconSize)
-                        .setName("Entrecote Steak")
                         .setDescription(getString(R.string.burger_description))
                         .build());
                 break;
@@ -127,20 +121,19 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                 customViews.add(Fries.create(this)
                         .setType(Fries.Type.RegularFries)
                         .setSize(iconSize, iconSize)
-                        .setName("Fries")
-                        .setDescription("Description")
+                        .setDescription(getString(R.string.burger_description))
                         .build());
 
                 customViews.add(Fries.create(this)
                         .setType(Fries.Type.SweetPotatoFries)
                         .setSize(iconSize, iconSize)
-                        .setDescription("Description")
+                        .setDescription(getString(R.string.burger_description))
                         .build());
 
                 customViews.add(Fries.create(this)
                         .setType(Fries.Type.HotFries)
                         .setSize(iconSize, iconSize)
-                        .setDescription("Description")
+                        .setDescription(getString(R.string.burger_description))
                         .build());
                 break;
             }
@@ -148,19 +141,19 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                 customViews.add(ColaCan.create(this)
                         .setType(ColaCan.Type.ColaCan)
                         .setSize(iconSize, iconSize)
-                        .setDescription("Description")
+                        .setDescription(getString(R.string.burger_description))
                         .build());
 
                 customViews.add(SodaCan.create(this)
                         .setType(SodaCan.Type.SodaCan)
                         .setSize(iconSize, iconSize)
-                        .setDescription("Description")
+                        .setDescription(getString(R.string.burger_description))
                         .build());
 
                 customViews.add(ColaCan2.create(this)
                         .setType(ColaCan2.Type.ColaCan2)
                         .setSize(iconSize, iconSize)
-                        .setDescription("Description")
+                        .setDescription(getString(R.string.burger_description))
                         .build());
                 break;
             }
@@ -257,6 +250,13 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
 //    // Add the menu to activity
 //        ((ConstraintLayout) findViewById(R.id.activity_main)).addView(menu);
 
+    void removeBlackShadow() {
+        MainActivity.this.findViewById(R.id.black_background).setVisibility(View.GONE);
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(getResources().getColor(R.color.colorGradientLight));
+    }
+
     public void showPopUpWindow(final SagiVectorIcon vectorIcon, boolean update) {
         // Initialize a new instance of LayoutInflater service
         LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
 
         if (update) {
             btnRemoveFromCart.setVisibility(View.VISIBLE);
-
+            btnAddToCart.setText("Update");
             btnRemoveFromCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -322,6 +322,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
 
                                 // Pass Details back to activity
                                 mCartFragment.RemoveItemFromCart(localFoodView);
+                                removeBlackShadow();
                                 mPopupWindow.dismiss();
                             }
                         }
@@ -338,6 +339,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         }
         else {
             btnRemoveFromCart.setVisibility(View.GONE);
+            btnAddToCart.setText("Add To Cart");
         }
 
         List<FoodExtra> extrasList = new ArrayList<>();
@@ -380,6 +382,9 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                         if (mPopupWindow != null && mPopupWindow.isShowing()) {
                             // Pass Details back to activity
                             mCartFragment.addItemToCart(localFoodView);
+
+                            removeBlackShadow();
+
                             mPopupWindow.dismiss();
                         }
                     }

@@ -72,13 +72,13 @@ public class Burger extends SagiVectorIcon {
     }
 
     public enum Type {
-        BeefBurger("Cheese Burger", 5.99f, R.style.BurgerColorStyle),
-        ChikenBurger("Chiken Burger", 5.99f, R.style.ChickenBurger),
-        NoVeggBurger("Burger w/ Veggies", 5.99f, R.style.NoVeggBurger),
-        NoCheeseBurger("Koser Burger", 5.99f, R.style.NoCheeseBurger),
-        VeggieBurger("Veggie Burger", 5.99f, R.style.VeggieBurger),
-        NoSesameBurger("No Sesame Burger", 5.99f, R.style.NoSesameBurger),
-        NoVeggAndCheeseBurger("No Cheese & Veggies Burger", 5.99f, R.style.NoVeggAndCheeseBurger);
+        BeefBurger("Cheese Burger", 8.99f, R.style.BurgerColorStyle),
+        ChikenBurger("Chiken Burger", 8.99f, R.style.ChickenBurger),
+        NoVeggBurger("Burger w/ Veggies", 8.99f, R.style.NoVeggBurger),
+        NoCheeseBurger("Koser Burger", 8.99f, R.style.NoCheeseBurger),
+        VeggieBurger("Veggie Burger", 8.99f, R.style.VeggieBurger),
+        NoSesameBurger("No Sesame Burger", 8.99f, R.style.NoSesameBurger),
+        NoVeggAndCheeseBurger("No Cheese & Veggies Burger", 8.99f, R.style.NoVeggAndCheeseBurger);
 
         private String stringValue;
         private float priceValueInDollars;
@@ -127,6 +127,7 @@ public class Burger extends SagiVectorIcon {
 
     @Override
     public Burger setName(String name) {
+        this.mName = name;
         return ((Burger) super.setName(name));
     }
 
