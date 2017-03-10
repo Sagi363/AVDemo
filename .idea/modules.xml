@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BreakingLine.iml" filepath="$PROJECT_DIR$/BreakingLine.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/breaking-line.iml" filepath="$PROJECT_DIR$/breaking-line.iml" />
     </modules>
   </component>
 </project>

@@ -3,25 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">sans-serif-light</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorGradientLight</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="meatDarkColor">@color/color_meatDarkColor</item>
-        <item name="sesameColor">@color/color_sesameColor</item>
-        <item name="cheeseDarkColor">@color/color_cheeseDarkColor</item>
-        <item name="meatLightColor">@color/color_meatLightColor</item>
-        <item name="bunColor">@color/color_bunColor</item>
-        <item name="meatStrokeColor">@color/color_meatStrokeColor</item>
-        <item name="meatGrillColor">@color/color_meatGrillColor</item>
-        <item name="tomatoLightColor">@color/color_tomatoLightColor</item>
-        <item name="bunShadowColor">@color/color_bunShadowColor</item>
-        <item name="lettuceDarkColor">@color/color_lettuceDarkColor</item>
-        <item name="bunInsideColor">@color/color_bunInsideColor</item>
-        <item name="lettuceLightColor">@color/color_lettuceLightColor</item>
-        <item name="tomatoDarkColor">@color/color_tomatoDarkColor</item>
-        <item name="cheeseLightColor">@color/color_cheeseLightColor</item>
     </style>
 
     <style name="VeggieBurger" parent="BurgerColorStyle">
