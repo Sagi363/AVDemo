@@ -16,4 +16,25 @@
             <attr name="tomatoDarkColor" format="color" />
             <attr name="cheeseLightColor" format="color" />
         </declare-styleable>
+
+        <declare-styleable name="FriesView">
+            <attr name="fries19_color" format="reference"/>
+            <attr name="fries18_color" format="reference"/>
+            <attr name="fries8_color" format="reference"/>
+            <attr name="fries9_color" format="reference"/>
+            <attr name="fries10_color" format="reference"/>
+            <attr name="fries11_color" format="reference"/>
+            <attr name="fries12_color" format="reference"/>
+            <attr name="fries13_color" format="reference"/>
+            <attr name="fries14_color" format="reference"/>
+            <attr name="fries15_color" format="reference"/>
+            <attr name="fries16_color" format="reference"/>
+            <attr name="fries_box_color" format="reference"/>
+            <attr name="fries_box_frame_color" format="reference"/>
+            <attr name="fries_white_circle_color" format="reference"/>
+            <attr name="chili1_color" format="reference"/>
+            <attr name="chili2_color" format="reference"/>
+            <attr name="chili3_color" format="reference"/>
+            <attr name="chili4_color" format="reference"/>
+        </declare-styleable>
 </resources>

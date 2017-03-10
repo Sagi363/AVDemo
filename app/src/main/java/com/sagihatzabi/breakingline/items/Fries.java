@@ -18,37 +18,33 @@ import com.sagihatzabi.breakingline.tools.AnimRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.*;
+import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Bacon;
+import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Cheese;
+import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Chili;
+import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Egg;
+import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Pickle;
+import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Veggs;
 
 /**
  * Created by sagihatzabi on 05/02/2017.
  */
 
-public class Burger extends SagiVectorIcon {
+public class Fries extends SagiVectorIcon {
 
-    private @StyleableRes int[] styleableAttrs = R.styleable.BurgerView;
-    final static @DrawableRes int DRAWABLE_WITH_ANIMATION = R.drawable.avd_burger_vector_anim;
-    final static @DrawableRes int BASE_DRAWABLE_WITHOUT_ANIMATION = R.drawable.vd_burger_vector;
+    private @StyleableRes int[] styleableAttrs = R.styleable.FriesView;
+    final static @DrawableRes int DRAWABLE_WITH_ANIMATION = R.drawable.avd_fries_vector_anim;
+    final static @DrawableRes int BASE_DRAWABLE_WITHOUT_ANIMATION = R.drawable.avd_fries_vector_anim;
 
     final int ANIMATION_DURATION = 501;
     public Type mType;
-    public boolean bVegg = true;
-    public boolean bCheese = true;
-    public boolean bSesame = true;
+    public boolean bSweetPotato = false;
+    public boolean bHotChili = false;
 
-    final Handler animHandler = new Handler();
-//    private Queue<Integer> animationDrawableQueue;
     private List<FoodExtra.Type> mExtras;
 
     public SagiVectorIcon build() {
         this.mExtras = new ArrayList<>();
-        mExtras.add(Veggs);
-        mExtras.add(Cheese);
-        mExtras.add(Bacon);
-        mExtras.add(Pickle);
-        mExtras.add(Egg);
         mExtras.add(Chili);
 
         try {
@@ -61,23 +57,16 @@ public class Burger extends SagiVectorIcon {
 
         if (this.mStartAnimationOnCreated) {
             this.startAnimation();
-
-            // TODO: Restore animHandler here
-            // Add/Remove Cheese/Vegg after the base animation
-            animHandler.postDelayed(new AnimRunnable(this), ANIMATION_DURATION);
         }
 
         return this;
     }
 
     public enum Type {
-        BeefBurger("Cheese Burger", 5.99f, R.style.BurgerColorStyle),
-        ChikenBurger("Chiken Burger", 5.99f, R.style.ChickenBurger),
-        NoVeggBurger("Burger w/ Veggies", 5.99f, R.style.NoVeggBurger),
-        NoCheeseBurger("Koser Burger", 5.99f, R.style.NoCheeseBurger),
-        VeggieBurger("Veggie Burger", 5.99f, R.style.VeggieBurger),
-        NoSesameBurger("No Sesame Burger", 5.99f, R.style.NoSesameBurger),
-        NoVeggAndCheeseBurger("No Cheese & Veggies Burger", 5.99f, R.style.NoVeggAndCheeseBurger);
+        RegularFries("Regular Fries", 0.99f, R.style.FriesColorStyle),
+        HotFries("Hot Fries", 0.99f, R.style.HotFriesStyle),
+        SweetPotatoFries("Sweet Potato Fries", 1.99f, R.style.SweetPotatoFriesStyle),
+        HotSweetPotatoFries("Koser Burger", 1.99f, R.style.HotSweetPotatoFriesStyle);
 
         private String stringValue;
         private float priceValueInDollars;
@@ -103,38 +92,40 @@ public class Burger extends SagiVectorIcon {
 
     }
 
-    public Burger(Context context) {
+    public Fries(Context context) {
         super(context);
     }
 
-    public static Burger create(@NonNull final Context context) {
-        return new Burger(context);
+    public static Fries create(@NonNull final Context context) {
+        return new Fries(context);
     }
 
-    public Burger setType(Type type) {
+    public Fries setType(Type type) {
         this.mType = type;
         this.setStyle(this.mType.getStyle());
+        this.setName(type.getName());
+        this.setPriceInDollars(type.getPriceInDollars());
         return this;
     }
 
     @Override
-    public Burger setSize(int width, int height) {
-        return ((Burger) super.setSize(width, height));
+    public Fries setSize(int width, int height) {
+        return ((Fries) super.setSize(width, height));
     }
 
     @Override
-    public Burger setName(String name) {
-        return ((Burger) super.setName(name));
+    public Fries setName(String name) {
+        return ((Fries) super.setName(name));
     }
 
     @Override
-    public Burger setDescription(String description) {
-        return (Burger) super.setDescription(description);
+    public Fries setDescription(String description) {
+        return (Fries) super.setDescription(description);
     }
 
     @Override
-    public Burger setPriceInDollars(float price) {
-        return ((Burger) super.setPriceInDollars(price));
+    public Fries setPriceInDollars(float price) {
+        return ((Fries) super.setPriceInDollars(price));
     }
 
 
@@ -214,93 +205,22 @@ public class Burger extends SagiVectorIcon {
 //        animationDrawableQueue.add(drawable);
     }
 
-    public Burger removeVegg() {
-        bVegg = false;
+    public Fries removeHotChili() {
+        bHotChili = false;
         final Resources.Theme currTheme = this.mTheme;
+//        final ContextThemeWrapper wrapper = new ContextThemeWrapper(getContext(), bHotChili ? R.style.SweetPotatoFriesStyle : R.style.FriesColorStyle);
         AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_minus_vegg_vector_anim, currTheme);
         this.setImageDrawable(drawable);
         drawable.start();
 
-//        drawable.registerAnimationCallback(new Animatable2.AnimationCallback() {
-//            @Override
-//            public void onAnimationEnd(Drawable d) {
-//                super.onAnimationEnd(d);
-//                AnimatedVectorDrawable tempDrawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_vector_anim, currTheme);
-//                updateDrawable(tempDrawable);
-//            }
-//        });
-
         return this;
     }
 
-    public Burger addVegg() {
-        bVegg = true;
-        final ContextThemeWrapper wrapper = new ContextThemeWrapper(getContext(), R.style.BurgerColorStyle);
-        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_plus_vegg_vector_anim, wrapper.getTheme());
-        this.setImageDrawable(drawable);
-        drawable.start();
-
-        return this;
-    }
-
-    public Burger removeCheese() {
-        bCheese = false;
+    public Fries addHotChili() {
+        bHotChili = true;
         final Resources.Theme currTheme = this.mTheme;
-        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_minus_cheese_vector_anim, currTheme);
-        this.setImageDrawable(drawable);
-        drawable.start();
-
-//        drawable.registerAnimationCallback(new Animatable2.AnimationCallback() {
-//            @Override
-//            public void onAnimationEnd(Drawable d) {
-//                super.onAnimationEnd(d);
-//                AnimatedVectorDrawable tempDrawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_vector_anim, currTheme);
-//                updateDrawable(tempDrawable);
-//            }
-//        });
-
-        return this;
-    }
-
-    public Burger addCheese() {
-        bCheese = true;
-        final Resources.Theme currTheme = this.mTheme;
-        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_plus_cheese_vector_anim, currTheme);
-        this.setImageDrawable(drawable);
-        drawable.start();
-
-        return this;
-    }
-
-    public Burger removeCheeseAndVegg() {
-        bCheese = false;
-        bVegg = false;
-        updateDrawableId(R.drawable.avd_burger_minus_vegg_and_cheese_vector_anim);
-
-        // TODO: Check if Anim is not running, else add delay
-        if (true) {
-            this.startAnimation();
-        }
-
-        return this;
-    }
-
-//    public Burger removeCheeseAndVegg() {
-//        bCheese = false;
-//        bVegg = false;
-//        final Resources.Theme currTheme = this.mTheme;
-//        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_minus_vegg_and_cheese_vector_anim, currTheme);
-//        this.setImageDrawable(drawable);
-//        drawable.start();
-//
-//        return this;
-//    }
-
-    public Burger addCheeseAndVegg() {
-        bCheese = true;
-        bVegg = true;
-        final Resources.Theme currTheme = this.mTheme;
-        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_plus_vegg_and_cheese_vector_anim, currTheme);
+//        final ContextThemeWrapper wrapper = new ContextThemeWrapper(getContext(), bHotChili ? R.style.HotSweetPotatoFriesStyle : R.style.HotFriesStyle);
+        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_plus_vegg_vector_anim, currTheme);
         this.setImageDrawable(drawable);
         drawable.start();
 
