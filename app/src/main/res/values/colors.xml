@@ -26,4 +26,25 @@
     <color name="textColor">#262729</color>
     <color name="item_view_textColor">#f7f7f7</color>
     <color name="textDescColor">#4a4a4b</color>
+
+    <color name="fries_orange_color">#ffa033</color>
+    <color name="fries_orange2_color">#e58d28</color>
+    <color name="fries19_color">#ffd15c</color>
+    <color name="fries18_color">#ffd15c</color>
+    <color name="fries8_color">#f8b64c</color>
+    <color name="fries9_color">#f8b64c</color>
+    <color name="fries10_color">#f8b64c</color>
+    <color name="fries11_color">#f8b64c</color>
+    <color name="fries12_color">#ffd15c</color>
+    <color name="fries13_color">#ffd15c</color>
+    <color name="fries14_color">#ffd15c</color>
+    <color name="fries15_color">#ffd15c</color>
+    <color name="fries16_color">#ffd15c</color>
+    <color name="fries_box_color">#ff7058</color>
+    <color name="fries_box_frame_color">#cf533f</color>
+    <color name="fries_white_circle_color">#ffffff</color>
+    <color name="chili1_color">#659c35</color>
+    <color name="chili2_color">#d13834</color>
+    <color name="chili3_color">#88c057</color>
+    <color name="chili4_color">#f75b57</color>
 </resources>

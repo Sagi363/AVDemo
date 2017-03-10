@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.sagihatzabi.breakingline.items.Burger;
 import com.sagihatzabi.breakingline.items.FoodExtra;
+import com.sagihatzabi.breakingline.items.Fries;
 import com.sagihatzabi.breakingline.items.SagiVectorIcon;
 
 import java.util.ArrayList;
@@ -44,20 +45,6 @@ public class MainActivity extends AppCompatActivity {
         NestedScrollView nestedScrollView = new NestedScrollView(this);
         nestedScrollView.addView(menu);
         ((LinearLayout) findViewById(R.id.activity_main)).addView(nestedScrollView);
-//
-//        LinearLayout line1 = (LinearLayout) findViewById(R.id.line1);
-//
-//        Burger burger = new Burger(this, Burger.Type.BeefBurger);
-//        line1.addView(burger);
-//        burger.setOnClickListener(this);
-//
-//        burger = new Burger(this, Burger.Type.NoCheeseBurger);
-//        line1.addView(burger);
-//        burger.setOnClickListener(this);
-//
-//        burger = new Burger(this, Burger.Type.NoVeggBurger);
-//        line1.addView(burger);
-//        burger.setOnClickListener(this);
     }
 
     BurgersRecyclerView createSnappingRecyclerView() {
@@ -78,6 +65,32 @@ public class MainActivity extends AppCompatActivity {
                 .setPriceInDollars(9.99f)
                 .setDescription("Description")
                 .removeCheese()
+                .build());
+
+        customViews.add(Burger.create(this)
+                .setType(Burger.Type.ChikenBurger)
+                .setSize(iconSize, iconSize)
+                .setName("Sagi Test2")
+                .setPriceInDollars(8.99f)
+                .setDescription("Description")
+                .build());
+
+        customViews.add(Fries.create(this)
+                .setType(Fries.Type.RegularFries)
+                .setSize(iconSize, iconSize)
+                .setDescription("Description")
+                .build());
+
+        customViews.add(Fries.create(this)
+                .setType(Fries.Type.SweetPotatoFries)
+                .setSize(iconSize, iconSize)
+                .setDescription("Description")
+                .build());
+
+        customViews.add(Fries.create(this)
+                .setType(Fries.Type.HotFries)
+                .setSize(iconSize, iconSize)
+                .setDescription("Description")
                 .build());
 
         // specify an adapter (see also next example)

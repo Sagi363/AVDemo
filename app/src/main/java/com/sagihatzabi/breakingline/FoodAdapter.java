@@ -79,12 +79,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
     @Override
     public void onClick(View view) {
         SagiVectorIcon icon = ((SagiVectorIcon)((LinearLayout)view).getChildAt(0));
-
-        if (icon instanceof Burger && ((Burger)icon).mType == Burger.Type.ChikenBurger) {
-            Burger b = ((Burger)icon).bVegg ? ((Burger)icon).removeCheeseAndVegg() : ((Burger)icon).addCheeseAndVegg();
-        }
-        else {
-            icon.startAnimation();
-        }
+        icon.startAnimation();
+//        if (icon instanceof Burger && ((Burger)icon).mType == Burger.Type.ChikenBurger) {
+//            Burger b = ((Burger)icon).bVegg ? ((Burger)icon).removeCheeseAndVegg() : ((Burger)icon).addCheeseAndVegg();
+//        }
+//        else {
+//            icon.startAnimation();
+//        }
     }
 }

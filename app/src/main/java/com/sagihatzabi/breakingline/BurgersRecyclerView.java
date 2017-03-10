@@ -21,7 +21,7 @@ import java.util.List;
 import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_FLING;
 import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL;
 
-public class BurgersRecyclerView extends RecyclerView {
+public class BurgersRecyclerView extends SnappingRecyclerView {
 
 	private int mMaxNumberOfItems = 5;
 	private int mNumberOfItems;
@@ -40,6 +40,9 @@ public class BurgersRecyclerView extends RecyclerView {
 	}
 
 	public BurgersRecyclerView build() {
+
+		this.enableAlphaViews(true);
+		this.enableViewScaling(true);
 
 		if (mAdapter == null) {
 			// TODO: ERROR
