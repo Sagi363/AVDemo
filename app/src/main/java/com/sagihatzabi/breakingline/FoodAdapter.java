@@ -1,5 +1,6 @@
 package com.sagihatzabi.breakingline;
 
+import android.support.annotation.ColorRes;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -17,18 +18,22 @@ import java.util.List;
  * Created by sagihatzabi on 11/02/2017.
  */
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> implements OnClickListener {
-    private List<SagiVectorIcon> mIcons;
 
     public interface OnItemClickListener {
         void onItemClick(SagiVectorIcon vectorIcon);
     }
 
+    private List<SagiVectorIcon> mIcons;
     private final OnItemClickListener listener;
+    @ColorRes
+    private int mColorId;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout mLinearLayout;
         public TextView mName;
         public TextView mPrice;
+
+
 
         public ViewHolder(View v) {
             super(v);
@@ -39,9 +44,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public FoodAdapter(List<SagiVectorIcon> mIcons, OnItemClickListener listener) {
+    public FoodAdapter(List<SagiVectorIcon> mIcons, OnItemClickListener listener, int colorId) {
         this.mIcons = mIcons;
         this.listener = listener;
+        this.mColorId = colorId;
     }
 
     // Create new views (invoked by the layout manager)
@@ -72,7 +78,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
 
         if (icon.getParent() == null) holder.mLinearLayout.addView(icon, 0);
         holder.mName.setText(icon.mName);
+        holder.mName.setTextColor(mColorId);
         holder.mPrice.setText(icon.mPrice + "$");
+        holder.mPrice.setTextColor(mColorId);
         holder.mLinearLayout.setOnClickListener(this);
     }
 

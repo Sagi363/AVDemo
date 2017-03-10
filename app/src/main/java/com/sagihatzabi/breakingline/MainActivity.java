@@ -3,6 +3,7 @@ package com.sagihatzabi.breakingline;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -172,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
 
 
         // specify an adapter (see also next example)
-        FoodAdapter mAdapter = new FoodAdapter(customViews, this);
+        FoodAdapter mAdapter = new FoodAdapter(customViews, this, ContextCompat.getColor(this, android.R.color.white));
 
         // Create FoodRecyclerView
         BurgersRecyclerView mRecyclerView =
@@ -264,50 +265,8 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         View popup_window_layout = inflater.inflate(R.layout.food_details, null);
 
         // Food
-        SagiVectorIcon localFoodView = null;
-
-        if (vectorIcon instanceof Burger) {
-            localFoodView = Burger.create(this)
-                    .setType(((Burger) vectorIcon).mType)
-                    .setSize(640, 640)
-                    .addElevation(100)
-                    .build();
-        }
-        else if (vectorIcon instanceof Fries) {
-            localFoodView = Fries.create(this)
-                    .setType(((Fries) vectorIcon).mType)
-                    .setSize(640, 640)
-                    .addElevation(100)
-                    .build();
-        }
-        else if (vectorIcon instanceof Steak) {
-            localFoodView = Steak.create(this)
-                    .setType(((Steak) vectorIcon).mType)
-                    .setSize(640, 640)
-                    .addElevation(100)
-                    .build();
-        }
-        else if (vectorIcon instanceof SodaCan) {
-            localFoodView = SodaCan.create(this)
-                    .setType(((SodaCan) vectorIcon).mType)
-                    .setSize(850, 850)
-                    .addElevation(100)
-                    .build();
-        }
-        else if (vectorIcon instanceof ColaCan) {
-            localFoodView = ColaCan.create(this)
-                    .setType(((ColaCan) vectorIcon).mType)
-                    .setSize(850, 850)
-                    .addElevation(100)
-                    .build();
-        }
-        else if (vectorIcon instanceof ColaCan2) {
-            localFoodView = ColaCan2.create(this)
-                    .setType(((ColaCan2) vectorIcon).mType)
-                    .setSize(850, 850)
-                    .addElevation(100)
-                    .build();
-        }
+        SagiVectorIcon localFoodView = Globals.getFoodIcon(this, vectorIcon, 650, 850, true);
+        localFoodView.setElevation(100);
 
         ViewGroup.LayoutParams localburgerLayoutParams = localFoodView.getLayoutParams();
         RelativeLayout.LayoutParams burgerRelativeLayoutParams =

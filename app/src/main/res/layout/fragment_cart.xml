@@ -4,31 +4,30 @@
         tools:context="com.sagihatzabi.breakingline.CartFragment"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:weightSum="1"
+        android:gravity="right"
         android:background="@android:color/white"
         android:orientation="horizontal">
 
-    <View
-            android:layout_width="1dp"
-            android:layout_margin="4dp"
-            android:layout_weight="0.01"
-            android:background="?android:attr/listDivider"
-            android:layout_height="match_parent"/>
-
     <LinearLayout
             android:id="@+id/fragment_cart_items"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.25"
             android:orientation="horizontal">
     </LinearLayout>
 
+    <View
+        android:layout_width="1dp"
+        android:layout_margin="6dp"
+        android:background="@color/divider_color"
+        android:layout_height="match_parent"/>
+
     <LinearLayout
             android:id="@+id/fragment_cart_pay_layout"
-            android:layout_width="match_parent"
+            android:layout_width="92dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.74"
-            android:orientation="vertical">
+
+            android:orientation="vertical"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
         <TextView
                 android:id="@+id/fragment_cart_price_button"

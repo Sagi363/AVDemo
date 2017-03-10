@@ -21,6 +21,7 @@ public class SodaCan extends SagiVectorIcon {
     final static @DrawableRes int BASE_DRAWABLE_WITHOUT_ANIMATION = R.drawable.ic_can;
 
     final int ANIMATION_DURATION = 501;
+
     public Type mType;
     public boolean bSweetPotato = false;
     public boolean bHotChili = false;
@@ -29,9 +30,10 @@ public class SodaCan extends SagiVectorIcon {
         this.mExtras = new HashMap<>();
 //        mExtras.put(Chili, new FoodExtraState(Chili, false));
 
-        this.setScaleX(1.25f);
-        this.setScaleY(1.25f);
-
+        if (mType.isScale) {
+            this.setScaleX(1.25f);
+            this.setScaleY(1.25f);
+        }
         try {
             this.setDrawableId(DRAWABLE_WITH_ANIMATION)
                 .setBaseDrawableWitoutAnimationId(BASE_DRAWABLE_WITHOUT_ANIMATION)
@@ -50,6 +52,7 @@ public class SodaCan extends SagiVectorIcon {
     public enum Type {
         SodaCan("Soda", 0.99f, R.style.NoStyle);
 
+        public boolean isScale;
         private String stringValue;
         private float priceValueInDollars;
         private int styleValue;
@@ -58,6 +61,14 @@ public class SodaCan extends SagiVectorIcon {
             stringValue = name;
             priceValueInDollars = price;
             styleValue = style;
+            isScale = true;
+        }
+
+        Type(String name, float price, @StyleRes int style, boolean scale) {
+            stringValue = name;
+            priceValueInDollars = price;
+            styleValue = style;
+            isScale = scale;
         }
 
         String getName() {
