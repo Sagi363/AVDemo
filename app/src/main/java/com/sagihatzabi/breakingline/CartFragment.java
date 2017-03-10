@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.sagihatzabi.breakingline.items.SagiVectorIcon;
 
@@ -31,6 +32,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
     private LinearLayout mCartLinearLayout;
     private BurgersRecyclerView mRecyclerView;
     private ArrayList<SagiVectorIcon> mCart;
+    private TextView mPriceTextView;
 
     public CartFragment() {
         // Required empty public constructor
@@ -68,6 +70,9 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
                 onButtonPay(mCart);
             }
         });
+
+        mPriceTextView = (TextView) view.findViewById(R.id.fragment_cart_price_button);
+
 
         mCart = new ArrayList<>();
         mRecyclerView = createSnappingRecyclerView();
@@ -143,5 +148,16 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
     public void addItemToCart(SagiVectorIcon item) {
         this.mCart.add(item);
         mRecyclerView.mAdapter.notifyDataSetChanged();
+
+        computeCartPrice();
+    }
+
+    private void computeCartPrice() {
+        float price = 0;
+
+        for (SagiVectorIcon sagiVectorIcon : this.mCart) {
+            // TODO: Compute price here
+//            price += sagiVectorIcon.mPrice;
+        }
     }
 }
