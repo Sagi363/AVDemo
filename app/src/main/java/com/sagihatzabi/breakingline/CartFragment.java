@@ -3,6 +3,7 @@ package com.sagihatzabi.breakingline;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -76,7 +77,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
 
 
         mCart = new ArrayList<>();
-        mRecyclerView = createSnappingRecyclerView();
+        mRecyclerView = createRecyclerView();
         mCartLinearLayout.addView(mRecyclerView);
 
 
@@ -128,12 +129,12 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
         void onFragmentInteraction(ArrayList<SagiVectorIcon> cart);
     }
 
-    private RecyclerView createSnappingRecyclerView() {
+    private RecyclerView createRecyclerView() {
 
         int width = mCartLinearLayout.getWidth();
 
         // specify an adapter (see also next example)
-        FoodAdapter mAdapter = new FoodAdapter(mCart, this);
+        FoodAdapter mAdapter = new FoodAdapter(mCart, this, ContextCompat.getColor(getActivity(), android.R.color.black));
 
         // Create FoodRecyclerView
         RecyclerView recyclerView = new RecyclerView(getActivity());
@@ -144,7 +145,10 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
     }
 
     public void addItemToCart(SagiVectorIcon item) {
-        this.mCart.add(item);
+
+        SagiVectorIcon localItem = Globals.getFoodIcon(getActivity(), item, 1000, 50);
+
+        this.mCart.add(localItem);
         mRecyclerView.getAdapter().notifyDataSetChanged();
 
         computeCartPrice();

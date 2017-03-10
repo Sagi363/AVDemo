@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.74"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="?attr/selectableItemBackgroundBorderless">
 
         <TextView
                 android:id="@+id/fragment_cart_price_button"
