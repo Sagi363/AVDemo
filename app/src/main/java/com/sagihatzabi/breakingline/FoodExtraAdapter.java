@@ -4,11 +4,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sagihatzabi.breakingline.items.Burger;
+import com.sagihatzabi.breakingline.items.FoodExtra;
+import com.sagihatzabi.breakingline.items.FoodExtraState;
 import com.sagihatzabi.breakingline.items.SagiVectorIcon;
 
 import java.util.List;
@@ -18,7 +21,19 @@ import java.util.List;
  */
 
 public class FoodExtraAdapter extends RecyclerView.Adapter<FoodExtraAdapter.ViewHolder> implements View.OnClickListener {
-    private List<SagiVectorIcon> mIcons;
+    private List<FoodExtra> mIcons;
+    SagiVectorIcon sagiVectorIcon;
+
+    public interface OnItemClickListener {
+        void onItemClick(FoodExtra foodExtra, SagiVectorIcon icon, boolean state);
+    }
+
+    private final FoodExtraAdapter.OnItemClickListener listener;
+
+    public void setIcon(SagiVectorIcon icon) {
+        this.sagiVectorIcon = icon;
+    }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout mLinearLayout;
@@ -36,8 +51,9 @@ public class FoodExtraAdapter extends RecyclerView.Adapter<FoodExtraAdapter.View
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public FoodExtraAdapter(List<SagiVectorIcon> mIcons) {
+    public FoodExtraAdapter(List<FoodExtra> mIcons, OnItemClickListener listener) {
         this.mIcons = mIcons;
+        this.listener = listener;
     }
 
     // Create new views (invoked by the layout manager)
@@ -57,7 +73,8 @@ public class FoodExtraAdapter extends RecyclerView.Adapter<FoodExtraAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        SagiVectorIcon icon = this.mIcons.get(position);
+        FoodExtra icon = this.mIcons.get(position);
+        icon.setTag(position);
 
 //        // Set size to width and height to WRAP_CONTENT
 //        LinearLayout.LayoutParams nameParams =
@@ -108,11 +125,13 @@ public class FoodExtraAdapter extends RecyclerView.Adapter<FoodExtraAdapter.View
 //        holder.mLinearLayout.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
 //        holder.mLinearLayout.setBackgroundResource(outValue.resourceId);
 
+        icon.setSize(icon.getWidth(), 600);
+
         holder.mName.setText(icon.mName);
         holder.mPrice.setText(Float.parseFloat(icon.mPrice) > 0 ?
                 icon.mPrice + icon.getResources().getString(R.string.dollar_sign) : "--");
 
-        if (true) {
+        if (sagiVectorIcon.mExtras.get(icon.mType).state) {
             holder.mButton.setBackground(icon.getResources().getDrawable(R.drawable.minus_button));
             holder.mButton.setImageResource(R.drawable.ic_remove);
         }
@@ -132,7 +151,7 @@ public class FoodExtraAdapter extends RecyclerView.Adapter<FoodExtraAdapter.View
 //        holder.mName.setText(icon.mName);
 //        holder.mPrice.setText(icon.mPrice + "$");
 
-        holder.mButton.setOnClickListener(this);
+//        holder.mButton.setOnClickListener(this);
         holder.mLinearLayout.setOnClickListener(this);
     }
 
@@ -144,18 +163,45 @@ public class FoodExtraAdapter extends RecyclerView.Adapter<FoodExtraAdapter.View
 
     @Override
     public void onClick(View view) {
-        if (view instanceof ImageButton) {
-//            view.getParent().;
-            return;
+//        if (view instanceof ImageButton) {
+//////            view.getParent().;
+//            return;
+//        }
+
+        FoodExtra foodExtra = ((FoodExtra)((LinearLayout)view).getChildAt(0));
+
+        if(foodExtra != null) {
+            FoodExtraState foodExtraState = sagiVectorIcon.mExtras.get(foodExtra.mType);
+            foodExtraState.state = !foodExtraState.state;
+            sagiVectorIcon.mExtras.put(foodExtra.mType, foodExtraState);
+            listener.onItemClick(foodExtra, this.sagiVectorIcon, foodExtraState.state);
+
+            mIcons.get(Integer.parseInt(foodExtra.getTag().toString()));
+
+            if (foodExtraState.state) {
+                ((ImageButton)view.findViewById(R.id.food_extra_button)).setBackground(view.getResources().getDrawable(R.drawable.minus_button));
+                ((ImageButton)view.findViewById(R.id.food_extra_button)).setImageResource(R.drawable.ic_remove);
+            }
+            else {
+                ((ImageButton)view.findViewById(R.id.food_extra_button)).setBackground(view.getResources().getDrawable(R.drawable.plus_button));
+                ((ImageButton)view.findViewById(R.id.food_extra_button)).setImageResource(R.drawable.ic_add);
+            }
+
         }
 
-        SagiVectorIcon icon = ((SagiVectorIcon)((LinearLayout)view).getChildAt(0));
 
-        if (icon instanceof Burger && ((Burger)icon).mType == Burger.Type.ChikenBurger) {
-            Burger b = ((Burger)icon).bVegg ? ((Burger)icon).removeCheeseAndVegg() : ((Burger)icon).addCheeseAndVegg();
-        }
-        else {
-            icon.startAnimation();
-        }
+//        if (view instanceof ImageButton) {
+////            view.getParent().;
+//            return;
+//        }
+//
+//        SagiVectorIcon icon = ((SagiVectorIcon)((LinearLayout)view).getChildAt(0));
+//
+//        if (icon instanceof Burger && ((Burger)icon).mType == Burger.Type.ChikenBurger) {
+//            Burger b = ((Burger)icon).bVegg ? ((Burger)icon).removeCheeseAndVegg() : ((Burger)icon).addCheeseAndVegg();
+//        }
+//        else {
+//            icon.startAnimation();
+//        }
     }
 }

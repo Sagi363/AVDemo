@@ -14,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sagihatzabi.breakingline.items.Burger;
+import com.sagihatzabi.breakingline.items.SagiVectorIcon;
+
 import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_FLING;
 import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL;
 
@@ -184,33 +187,15 @@ public class SnappingRecyclerView extends RecyclerView {
 			if (percentage == 0) {
 				// TODO: Start event
 
-//				SagiVectorIcon sagiVectorIcon = ((SagiVectorIcon)((LinearLayout) child).getChildAt(0));
-//				if (sagiVectorIcon instanceof Burger &&
-//						((((Burger)sagiVectorIcon).mType == Burger.Type.NoVeggBurger) ||
-//						(((Burger)sagiVectorIcon).mType == Burger.Type.NoCheeseBurger) ||
-//								(((Burger)sagiVectorIcon).mType == Burger.Type.ChikenBurger))) {
-//					sagiVectorIcon.scaleViewAnimation(0.2f, 1.0f);
-//				}
-//				else {
-//					sagiVectorIcon.startAnimation();
-//				}
-
-//				if (((MainActivity)this.getContext()).burgerName != null) {
-//
-//					String name = "";
-//
-//					if (sagiVectorIcon instanceof Burger) {
-//						name = ((Burger) sagiVectorIcon).mType.getName();
-//					}
-//					else if (sagiVectorIcon instanceof Steak) {
-//						name = ((Steak) sagiVectorIcon).mType.getName();
-//					}
-//					else if (sagiVectorIcon instanceof Fries) {
-//						name = ((Fries) sagiVectorIcon).mType.getName();
-//					}
-//
-//					((MainActivity) this.getContext()).burgerName.setText(name);
-//				}
+				SagiVectorIcon sagiVectorIcon = ((SagiVectorIcon)((LinearLayout) child).getChildAt(0));
+				if (sagiVectorIcon instanceof Burger &&
+						((((Burger)sagiVectorIcon).mType == Burger.Type.NoVeggBurger) ||
+						(((Burger)sagiVectorIcon).mType == Burger.Type.NoCheeseBurger) )) {
+					sagiVectorIcon.scaleViewAnimation(0.2f, 1.0f);
+				}
+				else {
+					sagiVectorIcon.startAnimation();
+				}
 			}
 		}
 	}

@@ -7,6 +7,7 @@ import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Px;
 import android.support.annotation.StyleRes;
 import android.support.annotation.StyleableRes;
 import android.support.v4.content.res.ResourcesCompat;
@@ -17,6 +18,7 @@ import com.sagihatzabi.breakingline.R;
 import com.sagihatzabi.breakingline.tools.AnimRunnable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
 
@@ -40,16 +42,15 @@ public class Burger extends SagiVectorIcon {
 
     final Handler animHandler = new Handler();
 //    private Queue<Integer> animationDrawableQueue;
-    private List<FoodExtra.Type> mExtras;
 
     public SagiVectorIcon build() {
-        this.mExtras = new ArrayList<>();
-        mExtras.add(Veggs);
-        mExtras.add(Cheese);
-        mExtras.add(Bacon);
-        mExtras.add(Pickle);
-        mExtras.add(Egg);
-        mExtras.add(Chili);
+        this.mExtras = new HashMap<>();
+        mExtras.put(Veggs, new FoodExtraState(Veggs, true));
+        mExtras.put(Cheese, new FoodExtraState(Cheese, true));
+        mExtras.put(Pickle, new FoodExtraState(Pickle, true));
+        mExtras.put(Bacon, new FoodExtraState(Bacon, false));
+        mExtras.put(Egg, new FoodExtraState(Egg, false));
+        mExtras.put(Chili, new FoodExtraState(Chili, false));
 
         try {
             this.setDrawableId(DRAWABLE_WITH_ANIMATION)
@@ -125,6 +126,16 @@ public class Burger extends SagiVectorIcon {
     @Override
     public Burger setName(String name) {
         return ((Burger) super.setName(name));
+    }
+
+    @Override
+    public Burger addElevation(int elevation) {
+        return ((Burger) super.addElevation(elevation));
+    }
+
+    @Override
+    public Burger startAnimationOnCreated(boolean startAnimationOnCreated) {
+        return (Burger)super.startAnimationOnCreated(startAnimationOnCreated);
     }
 
     @Override
@@ -235,8 +246,9 @@ public class Burger extends SagiVectorIcon {
 
     public Burger addVegg() {
         bVegg = true;
-        final ContextThemeWrapper wrapper = new ContextThemeWrapper(getContext(), R.style.BurgerColorStyle);
-        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_plus_vegg_vector_anim, wrapper.getTheme());
+        final Resources.Theme currTheme = this.mTheme;
+//        final ContextThemeWrapper wrapper = new ContextThemeWrapper(getContext(), R.style.BurgerColorStyle);
+        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_plus_vegg_vector_anim, currTheme);
         this.setImageDrawable(drawable);
         drawable.start();
 

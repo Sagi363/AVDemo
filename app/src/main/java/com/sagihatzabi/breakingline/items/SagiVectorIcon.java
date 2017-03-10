@@ -7,8 +7,10 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Px;
 import android.support.annotation.StyleRes;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.view.ContextThemeWrapper;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -17,6 +19,9 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by sagihatzabi on 05/02/2017.
@@ -47,6 +52,7 @@ public class SagiVectorIcon extends ImageView {
     private boolean active = true;
     private Drawable mDrawable;
 
+    public HashMap<FoodExtra.Type,FoodExtraState> mExtras;
 //    private SagiVectorIcon vectorIcon;
 
     public SagiVectorIcon buildIcon() throws Exception {
@@ -126,6 +132,13 @@ public class SagiVectorIcon extends ImageView {
         mDrawableId = drawable;
         mStyleId = style;
         init(context, width, height);
+    }
+
+    public SagiVectorIcon addElevation(int elevation) {
+//        this.setElevation(elevation);
+
+        ViewCompat.setElevation(this, elevation);
+        return this;
     }
 
     public SagiVectorIcon(Context context) {
@@ -222,7 +235,7 @@ public class SagiVectorIcon extends ImageView {
         this.mDrawable = ResourcesCompat.getDrawable(getResources(), mDrawableId, theme);
 
         if (!(this.mDrawable instanceof Animatable)) {
-            this.mStartAnimationOnCreated = false;
+//            this.mStartAnimationOnCreated = false;
             // TODO: REFRESH
             this.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
                     mBaseDrawableWitoutAnimId != 0 ? mBaseDrawableWitoutAnimId : mDrawableId, theme));
@@ -290,6 +303,7 @@ public class SagiVectorIcon extends ImageView {
             ((Animatable)mDrawable).start();
         }
         else {
+            this.scaleViewAnimation(0.4f, 1.0f);
             Log.d("SAGI", "startAnimation bug");
         }
     }

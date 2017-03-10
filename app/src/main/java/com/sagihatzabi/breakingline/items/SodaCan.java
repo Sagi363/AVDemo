@@ -1,41 +1,24 @@
 package com.sagihatzabi.breakingline.items;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Animatable2;
-import android.graphics.drawable.AnimatedVectorDrawable;
-import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
-import android.support.annotation.StyleableRes;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 
 import com.sagihatzabi.breakingline.R;
-import com.sagihatzabi.breakingline.tools.AnimRunnable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Bacon;
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Cheese;
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Chili;
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Egg;
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Pickle;
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Veggs;
 
 /**
  * Created by sagihatzabi on 05/02/2017.
  */
 
-public class Fries extends SagiVectorIcon {
+public class SodaCan extends SagiVectorIcon {
 
-    private @StyleableRes int[] styleableAttrs = R.styleable.FriesView;
-    final static @DrawableRes int DRAWABLE_WITH_ANIMATION = R.drawable.avd_fries_vector_anim;
-    final static @DrawableRes int BASE_DRAWABLE_WITHOUT_ANIMATION = R.drawable.avd_fries_vector_anim;
+//    private @StyleableRes int[] styleableAttrs = R.styleable.ColaCanView;
+    final static @DrawableRes int DRAWABLE_WITH_ANIMATION = R.drawable.ic_can;
+    final static @DrawableRes int BASE_DRAWABLE_WITHOUT_ANIMATION = R.drawable.ic_can;
 
     final int ANIMATION_DURATION = 501;
     public Type mType;
@@ -44,7 +27,10 @@ public class Fries extends SagiVectorIcon {
 
     public SagiVectorIcon build() {
         this.mExtras = new HashMap<>();
-        mExtras.put(Chili, new FoodExtraState(Chili, false));
+//        mExtras.put(Chili, new FoodExtraState(Chili, false));
+
+        this.setScaleX(1.25f);
+        this.setScaleY(1.25f);
 
         try {
             this.setDrawableId(DRAWABLE_WITH_ANIMATION)
@@ -62,10 +48,7 @@ public class Fries extends SagiVectorIcon {
     }
 
     public enum Type {
-        RegularFries("Regular Fries", 0.99f, R.style.FriesColorStyle),
-        HotFries("Hot Fries", 0.99f, R.style.HotFriesStyle),
-        SweetPotatoFries("Sweet Potato Fries", 1.99f, R.style.SweetPotatoFriesStyle),
-        HotSweetPotatoFries("Koser Burger", 1.99f, R.style.HotSweetPotatoFriesStyle);
+        SodaCan("Soda", 0.99f, R.style.NoStyle);
 
         private String stringValue;
         private float priceValueInDollars;
@@ -91,15 +74,15 @@ public class Fries extends SagiVectorIcon {
 
     }
 
-    public Fries(Context context) {
+    public SodaCan(Context context) {
         super(context);
     }
 
-    public static Fries create(@NonNull final Context context) {
-        return new Fries(context);
+    public static SodaCan create(@NonNull final Context context) {
+        return new SodaCan(context);
     }
 
-    public Fries setType(Type type) {
+    public SodaCan setType(Type type) {
         this.mType = type;
         this.setStyle(this.mType.getStyle());
         this.setName(type.getName());
@@ -108,28 +91,28 @@ public class Fries extends SagiVectorIcon {
     }
 
     @Override
-    public Fries setSize(int width, int height) {
-        return ((Fries) super.setSize(width, height));
+    public SodaCan setSize(int width, int height) {
+        return ((SodaCan) super.setSize(width, height));
     }
 
     @Override
-    public Fries setName(String name) {
-        return ((Fries) super.setName(name));
+    public SodaCan setName(String name) {
+        return ((SodaCan) super.setName(name));
     }
 
     @Override
-    public Fries setDescription(String description) {
-        return (Fries) super.setDescription(description);
+    public SodaCan setDescription(String description) {
+        return (SodaCan) super.setDescription(description);
     }
 
     @Override
-    public Fries addElevation(int elevation) {
-        return ((Fries) super.addElevation(elevation));
+    public SodaCan addElevation(int elevation) {
+        return ((SodaCan) super.addElevation(elevation));
     }
 
     @Override
-    public Fries setPriceInDollars(float price) {
-        return ((Fries) super.setPriceInDollars(price));
+    public SodaCan setPriceInDollars(float price) {
+        return ((SodaCan) super.setPriceInDollars(price));
     }
 
 
@@ -204,30 +187,4 @@ public class Fries extends SagiVectorIcon {
 //        a.recycle();
 //    }
 
-    public void addAnimation(@DrawableRes Integer drawableId) {
-        Animatable2 drawable = (Animatable2) ResourcesCompat.getDrawable(this.getResources(), drawableId, this.mTheme);
-//        animationDrawableQueue.add(drawable);
-    }
-
-    public Fries removeHotChili() {
-        bHotChili = false;
-        final Resources.Theme currTheme = this.mTheme;
-//        final ContextThemeWrapper wrapper = new ContextThemeWrapper(getContext(), bHotChili ? R.style.SweetPotatoFriesStyle : R.style.FriesColorStyle);
-        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_minus_vegg_vector_anim, currTheme);
-        this.setImageDrawable(drawable);
-        drawable.start();
-
-        return this;
-    }
-
-    public Fries addHotChili() {
-        bHotChili = true;
-        final Resources.Theme currTheme = this.mTheme;
-//        final ContextThemeWrapper wrapper = new ContextThemeWrapper(getContext(), bHotChili ? R.style.HotSweetPotatoFriesStyle : R.style.HotFriesStyle);
-        AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.avd_burger_plus_vegg_vector_anim, currTheme);
-        this.setImageDrawable(drawable);
-        drawable.start();
-
-        return this;
-    }
 }

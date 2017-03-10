@@ -4,38 +4,28 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Animatable2;
 import android.graphics.drawable.AnimatedVectorDrawable;
-import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 import android.support.annotation.StyleableRes;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 
 import com.sagihatzabi.breakingline.R;
-import com.sagihatzabi.breakingline.tools.AnimRunnable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Bacon;
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Cheese;
 import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Chili;
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Egg;
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Pickle;
-import static com.sagihatzabi.breakingline.items.FoodExtra.Type.Veggs;
 
 /**
  * Created by sagihatzabi on 05/02/2017.
  */
 
-public class Fries extends SagiVectorIcon {
+public class Steak extends SagiVectorIcon {
 
-    private @StyleableRes int[] styleableAttrs = R.styleable.FriesView;
-    final static @DrawableRes int DRAWABLE_WITH_ANIMATION = R.drawable.avd_fries_vector_anim;
-    final static @DrawableRes int BASE_DRAWABLE_WITHOUT_ANIMATION = R.drawable.avd_fries_vector_anim;
+//    private @StyleableRes int[] styleableAttrs = R.styleable.SteakView;
+    final static @DrawableRes int DRAWABLE_WITH_ANIMATION = R.drawable.avd_steak_vector_anim;
+    final static @DrawableRes int BASE_DRAWABLE_WITHOUT_ANIMATION = R.drawable.avd_steak_vector_anim;
 
     final int ANIMATION_DURATION = 501;
     public Type mType;
@@ -62,10 +52,7 @@ public class Fries extends SagiVectorIcon {
     }
 
     public enum Type {
-        RegularFries("Regular Fries", 0.99f, R.style.FriesColorStyle),
-        HotFries("Hot Fries", 0.99f, R.style.HotFriesStyle),
-        SweetPotatoFries("Sweet Potato Fries", 1.99f, R.style.SweetPotatoFriesStyle),
-        HotSweetPotatoFries("Koser Burger", 1.99f, R.style.HotSweetPotatoFriesStyle);
+        Steak("Steak", 12.99f, R.style.NoStyle);
 
         private String stringValue;
         private float priceValueInDollars;
@@ -91,15 +78,15 @@ public class Fries extends SagiVectorIcon {
 
     }
 
-    public Fries(Context context) {
+    public Steak(Context context) {
         super(context);
     }
 
-    public static Fries create(@NonNull final Context context) {
-        return new Fries(context);
+    public static Steak create(@NonNull final Context context) {
+        return new Steak(context);
     }
 
-    public Fries setType(Type type) {
+    public Steak setType(Type type) {
         this.mType = type;
         this.setStyle(this.mType.getStyle());
         this.setName(type.getName());
@@ -108,28 +95,28 @@ public class Fries extends SagiVectorIcon {
     }
 
     @Override
-    public Fries setSize(int width, int height) {
-        return ((Fries) super.setSize(width, height));
+    public Steak setSize(int width, int height) {
+        return ((Steak) super.setSize(width, height));
     }
 
     @Override
-    public Fries setName(String name) {
-        return ((Fries) super.setName(name));
+    public Steak setName(String name) {
+        return ((Steak) super.setName(name));
     }
 
     @Override
-    public Fries setDescription(String description) {
-        return (Fries) super.setDescription(description);
+    public Steak setDescription(String description) {
+        return (Steak) super.setDescription(description);
     }
 
     @Override
-    public Fries addElevation(int elevation) {
-        return ((Fries) super.addElevation(elevation));
+    public Steak addElevation(int elevation) {
+        return ((Steak) super.addElevation(elevation));
     }
 
     @Override
-    public Fries setPriceInDollars(float price) {
-        return ((Fries) super.setPriceInDollars(price));
+    public Steak setPriceInDollars(float price) {
+        return ((Steak) super.setPriceInDollars(price));
     }
 
 
@@ -209,7 +196,7 @@ public class Fries extends SagiVectorIcon {
 //        animationDrawableQueue.add(drawable);
     }
 
-    public Fries removeHotChili() {
+    public Steak removeHotChili() {
         bHotChili = false;
         final Resources.Theme currTheme = this.mTheme;
 //        final ContextThemeWrapper wrapper = new ContextThemeWrapper(getContext(), bHotChili ? R.style.SweetPotatoFriesStyle : R.style.FriesColorStyle);
@@ -220,7 +207,7 @@ public class Fries extends SagiVectorIcon {
         return this;
     }
 
-    public Fries addHotChili() {
+    public Steak addHotChili() {
         bHotChili = true;
         final Resources.Theme currTheme = this.mTheme;
 //        final ContextThemeWrapper wrapper = new ContextThemeWrapper(getContext(), bHotChili ? R.style.HotSweetPotatoFriesStyle : R.style.HotFriesStyle);

@@ -93,6 +93,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
 //        if (icon instanceof Burger) {
 //            Burger burger = ((Burger)icon);
 //        }
+//        else if () {
+//
+//        }
 
 //        if (icon instanceof Burger && ((Burger)icon).mType == Burger.Type.ChikenBurger) {
 //            Burger b = ((Burger)icon).bVegg ? ((Burger)icon).removeCheeseAndVegg() : ((Burger)icon).addCheeseAndVegg();
