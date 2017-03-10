@@ -135,8 +135,6 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
 
     private RecyclerView createRecyclerView() {
 
-        int width = mCartLinearLayout.getWidth();
-
         // specify an adapter (see also next example)
         FoodAdapter mAdapter = new FoodAdapter(mCart, this, ContextCompat.getColor(getActivity(), android.R.color.black));
 
