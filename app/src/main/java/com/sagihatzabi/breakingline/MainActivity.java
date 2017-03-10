@@ -1,7 +1,6 @@
 package com.sagihatzabi.breakingline;
 
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.NestedScrollView;
@@ -16,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sagihatzabi.breakingline.items.Burger;
 import com.sagihatzabi.breakingline.items.Fries;
@@ -320,7 +320,9 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
+    public void onFragmentInteraction(ArrayList<SagiVectorIcon> cart) {
+        // TODO: implement
+        // Proceed here to payment
+        Toast.makeText(this, "Pay Cart. items: " + cart.size(), Toast.LENGTH_SHORT).show();
     }
 }

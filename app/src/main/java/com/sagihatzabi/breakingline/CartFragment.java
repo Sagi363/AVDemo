@@ -1,7 +1,6 @@
 package com.sagihatzabi.breakingline;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,20 +61,28 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
         mCartLinearLayout = (LinearLayout) view.findViewById(R.id.fragment_cart_items);
+        View btnPay = view.findViewById(R.id.fragment_cart_pay_layout);
+        btnPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onButtonPay(mCart);
+            }
+        });
 
         mCart = new ArrayList<>();
         mRecyclerView = createSnappingRecyclerView();
         mCartLinearLayout.addView(mRecyclerView);
+
+
 
         // Inflate the layout for this fragment
         return view;
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPay(ArrayList<SagiVectorIcon> cart) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(this.mCart);
         }
     }
 
@@ -112,8 +119,7 @@ public class CartFragment extends Fragment implements FoodAdapter.OnItemClickLis
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(ArrayList<SagiVectorIcon> cart);
     }
 
     BurgersRecyclerView createSnappingRecyclerView() {
