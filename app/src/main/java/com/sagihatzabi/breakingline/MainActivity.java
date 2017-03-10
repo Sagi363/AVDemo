@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
 
     private LinearLayout mLinearLayout;
     private PopupWindow mPopupWindow;
-    View mCartFragment;
+    private CartFragment mCartFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         setContentView(R.layout.activity_main);
 
         // Get Fragment
-        mCartFragment = findViewById(R.id.main_activity_cart_fragment);
+        mCartFragment = (CartFragment) getSupportFragmentManager().findFragmentById(R.id.main_activity_cart_fragment);
 
         mLinearLayout = (LinearLayout) findViewById(R.id.main_activity_inner_layout);
 
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
 //    // Add the menu to activity
 //        ((ConstraintLayout) findViewById(R.id.activity_main)).addView(menu);
 
-    private void showPopUpWindow(SagiVectorIcon vectorIcon) {
+    private void showPopUpWindow(final SagiVectorIcon vectorIcon) {
         // Initialize a new instance of LayoutInflater service
         LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -216,7 +216,6 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
                     .setSize(480, 480)
                     .build();
         }
-
 
         ViewGroup.LayoutParams localburgerLayoutParams = localFoodView.getLayoutParams();
         RelativeLayout.LayoutParams burgerRelativeLayoutParams =
@@ -246,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
             public void onClick(View v) {
 
                 // Pass Details back to activity
-
+                mCartFragment.addItemToCart(vectorIcon);
 
                 if (mPopupWindow != null && mPopupWindow.isShowing()) {
                     mPopupWindow.dismiss();

@@ -4,9 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import com.sagihatzabi.breakingline.items.SagiVectorIcon;
+
+import java.util.ArrayList;
 
 
 /**
@@ -17,10 +23,15 @@ import android.view.ViewGroup;
  * Use the {@link CartFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements FoodAdapter.OnItemClickListener {
 
 
+    private static final int NUM_OF_ITEMS = 3;
     private OnFragmentInteractionListener mListener;
+
+    private LinearLayout mCartLinearLayout;
+    private BurgersRecyclerView mRecyclerView;
+    private ArrayList<SagiVectorIcon> mCart;
 
     public CartFragment() {
         // Required empty public constructor
@@ -42,13 +53,23 @@ public class CartFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
+
+        mCartLinearLayout = (LinearLayout) view.findViewById(R.id.fragment_cart_items);
+
+        mCart = new ArrayList<>();
+        mRecyclerView = createSnappingRecyclerView();
+        mCartLinearLayout.addView(mRecyclerView);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -75,6 +96,11 @@ public class CartFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onItemClick(SagiVectorIcon vectorIcon) {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -88,5 +114,28 @@ public class CartFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    BurgersRecyclerView createSnappingRecyclerView() {
+
+        int width = mCartLinearLayout.getWidth();
+
+        // specify an adapter (see also next example)
+        FoodAdapter mAdapter = new FoodAdapter(mCart, this);
+
+        // Create FoodRecyclerView
+        BurgersRecyclerView mRecyclerView =
+                BurgersRecyclerView.create(getActivity())
+                        .addAdapter(mAdapter)
+                        .setNumberOfItems(NUM_OF_ITEMS)
+                        .setOrientation(LinearLayoutManager.HORIZONTAL)
+                        .build();
+
+        return mRecyclerView;
+    }
+
+    public void addItemToCart(SagiVectorIcon item) {
+        this.mCart.add(item);
+        mRecyclerView.mAdapter.notifyDataSetChanged();
     }
 }
