@@ -82,4 +82,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="PopUpAnimation">
+        <!--<item name="android:windowEnterAnimation">@animator/anim_pop_in</item>-->
+        <!--<item name="android:windowExitAnimation">@animator/anim_pop_out</item>-->
+        <item name="android:windowEnterAnimation">@anim/anim_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_out</item>
+    </style>
+
 </resources>

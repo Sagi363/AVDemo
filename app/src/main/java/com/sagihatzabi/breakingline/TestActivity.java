@@ -80,9 +80,20 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         tvName.setText(((SagiVectorIcon) v).mName);
         tvDescription.setText(((SagiVectorIcon) v).mDescription);
 
+        TextView btnAddToCart = (TextView) popup_window_layout.findViewById(R.id.food_details_add_cart);
+
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Pass Details back to activity
 
 
-
+                if (mPopupWindow != null && mPopupWindow.isShowing()) {
+                    mPopupWindow.dismiss();
+                }
+            }
+        });
 
                 /*
                     public PopupWindow (View contentView, int width, int height)
@@ -107,6 +118,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         // Set an elevation value for popup window
         // Call requires API level 21
         mPopupWindow.setElevation(5.0f);
+
+        // Animation
+        mPopupWindow.setAnimationStyle(R.style.PopUpAnimation);
 
 //        // Get a reference for the custom view close button
 //        ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
@@ -136,10 +150,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 */
         // Finally, show the popup window at the center location of root relative layout
         mPopupWindow.showAtLocation(mConstraintLayout, Gravity.CENTER,0,0);
+    }
 
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        if (mPopupWindow != null && mPopupWindow.isShowing()) {
+            mPopupWindow.dismiss();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
