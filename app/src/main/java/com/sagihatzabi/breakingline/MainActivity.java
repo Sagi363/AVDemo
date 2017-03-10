@@ -194,13 +194,25 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         // Inflate the custom view
         View popup_window_layout = inflater.inflate(R.layout.food_details, null);
 
-        // Burger
-        View localBurgerView = Burger.create(this)
-                .setType(((Burger) vectorIcon).mType)
-                .setSize(480, 480)
-                .build();
+        // Food
+        View localFoodView = null;
 
-        ViewGroup.LayoutParams localburgerLayoutParams = localBurgerView.getLayoutParams();
+        if (vectorIcon instanceof Burger) {
+            localFoodView = Burger.create(this)
+                    .setType(((Burger) vectorIcon).mType)
+                    .setSize(480, 480)
+                    .build();
+
+        }
+        else if (vectorIcon instanceof Fries) {
+            localFoodView = Fries.create(this)
+                    .setType(((Fries) vectorIcon).mType)
+                    .setSize(480, 480)
+                    .build();
+        }
+
+
+        ViewGroup.LayoutParams localburgerLayoutParams = localFoodView.getLayoutParams();
         RelativeLayout.LayoutParams burgerRelativeLayoutParams =
                 new RelativeLayout.LayoutParams(localburgerLayoutParams.width, localburgerLayoutParams.height);
         burgerRelativeLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
@@ -211,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements FoodAdapter.OnIte
         burgerRelativeLayoutParams.topMargin = margin_24;
 
         // Add burger to customView
-        ((RelativeLayout) popup_window_layout.findViewById(R.id.food_details_outer_layout)).addView(localBurgerView, burgerRelativeLayoutParams);
+        ((RelativeLayout) popup_window_layout.findViewById(R.id.food_details_outer_layout)).addView(localFoodView, burgerRelativeLayoutParams);
 
         TextView tvPrice = (TextView) popup_window_layout.findViewById(R.id.food_details_price);
         TextView tvName = (TextView) popup_window_layout.findViewById(R.id.food_details_name);
