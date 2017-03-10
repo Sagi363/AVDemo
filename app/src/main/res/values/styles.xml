@@ -32,10 +32,10 @@
     </style>
 
     <style name="ChickenBurger" parent="BurgerColorStyle">
-        <item name="meatDarkColor">#930503</item>
-        <item name="meatLightColor">@color/color_meatLightColor</item>
+        <item name="meatDarkColor">#e2953c</item>
+        <item name="meatLightColor">#ec9f47</item>
         <item name="meatStrokeColor">@color/color_meatStrokeColor</item>
-        <item name="meatGrillColor">@color/color_meatGrillColor</item>
+        <item name="meatGrillColor">#70380e</item>
     </style>
 
     <style name="NoVeggAndCheeseBurger" parent="NoCheeseBurger">
@@ -61,6 +61,67 @@
         <item name="sesameColor">@color/color_notActiveStroke</item>
     </style>
 
+    <style name="HotSweetPotatoFriesStyle" parent="FriesColorStyle">
+        <item name="fries19_color">@color/fries_orange_color</item>
+        <item name="fries18_color">@color/fries_orange_color</item>
+        <item name="fries8_color">@color/fries_orange2_color</item>
+        <item name="fries9_color">@color/fries_orange2_color</item>
+        <item name="fries10_color">@color/fries_orange2_color</item>
+        <item name="fries11_color">@color/fries_orange2_color</item>
+        <item name="fries12_color">@color/fries_orange_color</item>
+        <item name="fries13_color">@color/fries_orange_color</item>
+        <item name="fries14_color">@color/fries_orange_color</item>
+        <item name="fries15_color">@color/fries_orange_color</item>
+        <item name="fries16_color">@color/fries_orange_color</item>
+        <item name="chili1_color">@color/chili1_color</item>
+        <item name="chili2_color">@color/chili2_color</item>
+        <item name="chili3_color">@color/chili3_color</item>
+        <item name="chili4_color">@color/chili4_color</item>
+    </style>
+
+    <style name="SweetPotatoFriesStyle" parent="FriesColorStyle">
+        <item name="fries19_color">@color/fries_orange_color</item>
+        <item name="fries18_color">@color/fries_orange_color</item>
+        <item name="fries8_color">@color/fries_orange2_color</item>
+        <item name="fries9_color">@color/fries_orange2_color</item>
+        <item name="fries10_color">@color/fries_orange2_color</item>
+        <item name="fries11_color">@color/fries_orange2_color</item>
+        <item name="fries12_color">@color/fries_orange_color</item>
+        <item name="fries13_color">@color/fries_orange_color</item>
+        <item name="fries14_color">@color/fries_orange_color</item>
+        <item name="fries15_color">@color/fries_orange_color</item>
+        <item name="fries16_color">@color/fries_orange_color</item>
+    </style>
+
+    <style name="HotFriesStyle" parent="FriesColorStyle">
+        <item name="chili1_color">@color/chili1_color</item>
+        <item name="chili2_color">@color/chili2_color</item>
+        <item name="chili3_color">@color/chili3_color</item>
+        <item name="chili4_color">@color/chili4_color</item>
+    </style>
+
+    <style name="FriesColorStyle">
+        <item name="fries19_color">@color/fries19_color</item>
+        <item name="fries18_color">@color/fries18_color</item>
+        <item name="fries8_color">@color/fries8_color</item>
+        <item name="fries9_color">@color/fries9_color</item>
+        <item name="fries10_color">@color/fries10_color</item>
+        <item name="fries11_color">@color/fries11_color</item>
+        <item name="fries12_color">@color/fries12_color</item>
+        <item name="fries13_color">@color/fries13_color</item>
+        <item name="fries14_color">@color/fries14_color</item>
+        <item name="fries15_color">@color/fries15_color</item>
+        <item name="fries16_color">@color/fries16_color</item>
+        <item name="fries_box_color">@color/fries_box_color</item>
+        <item name="fries_box_frame_color">@color/fries_box_frame_color</item>
+        <item name="fries_white_circle_color">@color/fries_white_circle_color</item>
+        <item name="chili1_color">@android:color/transparent</item>
+        <item name="chili2_color">@android:color/transparent</item>
+        <item name="chili3_color">@android:color/transparent</item>
+        <item name="chili4_color">@android:color/transparent</item>
+    </style>
+
+
     <style name="BurgerColorStyle">
         <item name="meatDarkColor">@color/color_meatDarkColor</item>
         <item name="sesameColor">@color/color_sesameColor</item>
@@ -78,6 +139,7 @@
         <item name="cheeseLightColor">@color/color_cheeseLightColor</item>
     </style>
 
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
@@ -87,6 +149,9 @@
         <!--<item name="android:windowExitAnimation">@animator/anim_pop_out</item>-->
         <item name="android:windowEnterAnimation">@anim/anim_in</item>
         <item name="android:windowExitAnimation">@anim/anim_out</item>
+
     </style>
+
+    <style name="NoStyle"> </style>
 
 </resources>
