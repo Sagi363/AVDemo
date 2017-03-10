@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -28,7 +30,7 @@ public class OrderSummeryActivity extends AppCompatActivity {
 
     private PopupWindow mPopupWindowArrive;
     private PopupWindow mPopupWindowBranch;
-
+    private LinearLayout mRecyclerLinearLayout;
 
 
     @Override
@@ -40,7 +42,7 @@ public class OrderSummeryActivity extends AppCompatActivity {
         mArriveIn = (TextView) findViewById(R.id.activity_order_summery_arrive_in);
         mBranch = (TextView) findViewById(R.id.activity_order_summery_branch);
         mPayButton = (TextView) findViewById(R.id.activity_order_summery_pay);
-
+        mRecyclerLinearLayout = (LinearLayout) findViewById(R.id.activity_order_summery_items);
 
         // Price
         float price = Globals.round(Globals.computeCartPrice(cartItems), 2);
@@ -73,17 +75,26 @@ public class OrderSummeryActivity extends AppCompatActivity {
             }
         });
 
+        // RecyclerView
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT);
+
+        RecyclerView mRecyclerView = createRecyclerView();
+        mRecyclerLinearLayout.addView(mRecyclerView, params);
+
     }
 
     private RecyclerView createRecyclerView() {
 
         // specify an adapter (see also next example)
-        FoodAdapter mAdapter = new FoodAdapter(cartItems, new FoodAdapter.OnItemClickListener() {
+        CartAdapter mAdapter = new CartAdapter(cartItems, new CartAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(SagiVectorIcon vectorIcon) {
 
             }
         }, ContextCompat.getColor(this, android.R.color.black));
+
 
         // Create FoodRecyclerView
         RecyclerView recyclerView = new RecyclerView(this);
